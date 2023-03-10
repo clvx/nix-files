@@ -1,6 +1,18 @@
+-- key mapping function
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap=true, silent=true }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+--
 local opt = vim.opt
 local g = vim.g
 
+-- enabling clipboard
+opt.clipboard=unnamedplus
 
 -- fugitive vertical split
 opt.diffopt = opt.diffopt + 'vertical'
@@ -114,3 +126,20 @@ vim.cmd([[
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 ]])
 
+
+
+--- keymaps
+
+-- Navegar entre ventanas
+map('','<C-h>','<C-w>h')
+map('','<C-j>','<C-w>j')
+map('','<C-k>','<C-w>k')
+map('','<C-l>','<C-w>l')
+
+-- Navegar entre tabs
+map('','<c-t>','<esc>:tabnew<cr>')
+map('','<c-[>','gT')
+map('','<c-]>','gt')
+
+-- close current buffer
+map('n','<leader>q',':bd<CR>')
