@@ -34,6 +34,7 @@
       luafile ./config/nvim/plugins/nvim-treesitter.lua
       luafile ./config/nvim/plugins/lualine-nvim.lua
       luafile ./config/nvim/plugins/nvim-lspconfig.lua
+      luafile ./config/nvim/plugins/nvim-cmp.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -63,6 +64,9 @@
         cmp-path
         cmp-nvim-lua
         cmp-nvim-lsp
+        luasnip
+        cmp_luasnip
+        lspkind-nvim
     ];
   };
 }
