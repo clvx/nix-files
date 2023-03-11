@@ -26,6 +26,11 @@ A bunch of files managed by Nix home-manager.
 [ ] Not very happy with nix-cmp. It requires work to give it the same UX as coc.vim.
 - tab support
 - selecting item
+- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+- https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
+[ ] Fix nvim-tree opening new buffer instead of replacing it.
+- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
 [ ] Review different mappings:
 - nvim-lspconfig
 - nvim-cmp
+[ ] Fix colors for toggleterm-nvim

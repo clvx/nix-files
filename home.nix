@@ -35,6 +35,7 @@
       luafile ./config/nvim/plugins/lualine-nvim.lua
       luafile ./config/nvim/plugins/nvim-lspconfig.lua
       luafile ./config/nvim/plugins/nvim-cmp.lua
+      luafile ./config/nvim/plugins/toggleterm.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -54,6 +55,7 @@
         #eye candy
         nvim-treesitter
         lualine-nvim
+        toggleterm-nvim
 
         #lsp
         nvim-lspconfig
