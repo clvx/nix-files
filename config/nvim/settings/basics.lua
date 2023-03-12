@@ -12,7 +12,7 @@ local opt = vim.opt
 local g = vim.g
 
 -- enabling clipboard
-opt.clipboard=unnamedplus
+opt.clipboard= "unnamedplus"
 
 -- fugitive vertical split
 opt.diffopt = opt.diffopt + 'vertical'
@@ -58,6 +58,15 @@ opt.colorcolumn = {'80', '120'}
 -- busquedas insensibles a minusculas y mayusculas
 opt.ignorecase = true
 opt.smartcase = true
+opt.wildignorecase = true
+opt.wildignore:append "**/.git/*"
+opt.wildignore:append "**/build/*"
+opt.wildignore:append "**/node_modules/*"
+opt.wildignore:append "**/vendor/*"
+
+
+opt.path:remove "/usr/include"
+opt.path:append "**"
 
 -- indice de lineas
 opt.number = true
@@ -128,18 +137,4 @@ vim.cmd([[
 
 
 
---- keymaps
 
--- Navegar entre ventanas
-map('','<C-h>','<C-w>h')
-map('','<C-j>','<C-w>j')
-map('','<C-k>','<C-w>k')
-map('','<C-l>','<C-w>l')
-
--- Navegar entre tabs
-map('','<c-t>','<esc>:tabnew<cr>')
-map('','<c-[>','gT')
-map('','<c-]>','gt')
-
--- close current buffer
-map('n','<leader>q',':bd<CR>')

@@ -14,6 +14,7 @@
     pkgs.jq
     pkgs.tmux
     pkgs.gcc
+    pkgs.bat
 
     #programming languages
     pkgs.go
@@ -30,6 +31,8 @@
     vimAlias = true;
     extraConfig = ''
       luafile ./config/nvim/settings/basics.lua
+      luafile ./config/nvim/settings/whichkey.lua
+      luafile ./config/nvim/settings/keymaps.lua
       luafile ./config/nvim/plugins/nvim-tree.lua
       luafile ./config/nvim/plugins/nvim-treesitter.lua
       luafile ./config/nvim/plugins/lualine-nvim.lua
@@ -56,6 +59,10 @@
         nvim-treesitter
         lualine-nvim
         toggleterm-nvim
+        which-key-nvim
+
+        #fuzzy finder
+        fzf-lua
 
         #lsp
         nvim-lspconfig
