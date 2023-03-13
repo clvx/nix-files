@@ -1,6 +1,5 @@
 # Nix files
 
-
 A bunch of files managed by Nix home-manager.
 
 ## Install
@@ -24,13 +23,29 @@ A bunch of files managed by Nix home-manager.
 ## TODOs
 
 [ ] Not very happy with nix-cmp. It requires work to give it the same UX as coc.vim.
+
 - tab support
+
 - selecting item
+
 - https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+
 - https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
+
 [ ] Fix nvim-tree opening new buffer instead of replacing it.
+
 - https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
+
 [ ] Review different mappings:
+
 - nvim-lspconfig
+
 - nvim-cmp
-[ ] Fix colors for toggleterm-nvim
+
+[ ] unmap default commands
+
+[ ] Dig into lsp-config keymaps
+
+[ ] Review go.nvim
+- https://github.com/ray-x/go.nvim
+- https://medium.com/@yanglyu5201/neovim-setup-for-golang-programming-68ebf59336d9

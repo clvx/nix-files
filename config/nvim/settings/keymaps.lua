@@ -20,11 +20,27 @@ map('n','<leader>fb', ':FzfLua buffers<CR>')
 map('n','<leader>fl', ':FzfLua lines<CR>')
 map('n','<leader>ft', ':FzfLua tags<CR>')
 map('n','<leader>fg', ':FzfLua grep<CR>')
-map('n','<leader>fgf', ':FzfLua git_files<CR>')
-map('n','<leader>fgc', ':FzfLua git_commits<CR>')
-map('n','<leader>fbi', ':FzfLua builtin<CR>')
-map('n','<leader>fnc', ':FzfLua commands<CR>')
+map('n','<leader>fF', ':FzfLua git_files<CR>')
+map('n','<leader>fC', ':FzfLua git_commits<CR>')
+map('n','<leader>fB', ':FzfLua builtin<CR>')
+map('n','<leader>fc', ':FzfLua commands<CR>')
 map('n','<leader>fm', ':FzfLua keymaps<CR>')
+
+
+---------------
+--- fzf-lua ---
+---------------
+map('n','<leader>lr', ':FzfLua lsp_references<CR>')
+map('n','<leader>ld', ':FzfLua lsp_definitions<CR>')
+map('n','<leader>lD', ':FzfLua lsp_declarations<CR>')
+map('n','<leader>li', ':FzfLua lsp_implementations<CR>')
+map('n','<leader>lds', ':FzfLua lsp_document_symbols<CR>')
+map('n','<leader>lws', ':FzfLua lsp_workspace_symbols<CR>')
+map('n','<leader>lca', ':FzfLua lsp_code_actions<CR>')
+map('n','<leader>lic', ':FzfLua lsp_incoming_calls<CR>')
+map('n','<leader>loc', ':FzfLua lsp_outgoing_calls<CR>')
+map('n','<leader>ldd', ':FzfLua lsp_document_diagnostics<CR>')
+map('n','<leader>ldw', ':FzfLua lsp_workspace_diagnostics<CR>')
 
 -----------------------
 -- buffer navigation --

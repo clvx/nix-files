@@ -25,19 +25,39 @@
 
     b = {
       name = "Buffer",
-      c = { "<Cmd>bd!<Cr>", "Close current buffer" },
+      q = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
     },
 
-    f = {
-      name = "Find",
-      f = { "<cmd>FzfLua files<cr>", "Files" },
-      b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
-      o = { "<cmd>FzfLua oldfiles<cr>", "Old files" },
-      g = { "<cmd>FzfLua live_grep<cr>", "Live grep" },
-      c = { "<cmd>FzfLua commands<cr>", "Commands" },
+    ["<leader>"] = {
+        n = { "<cmd>NvimTreeToggle<CR>", "NvimTree" },
+        f = {
+          name = "FZF",
+          f = { "<cmd>FzfLua files<cr>", "Files" },
+          b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
+          l = { "<cmd>FzfLua lines<cr>", "Lines" },
+          t = { "<cmd>FzfLua tags<cr>", "Tags" },
+          g = { "<cmd>FzfLua grep<cr>", "Grep" },
+          F = { "<cmd>FzfLua git_files<cr>", "Git Files" },
+          C = { "<cmd>FzfLua git_commits<cr>", "Git Commits" },
+          B = { "<cmd>FzfLua builtin<cr>", "Builtin" },
+          c = { "<cmd>FzfLua commands<cr>", "Commands" },
+          m = { "<cmd>FzfLua keymaps<cr>", "Keymaps" },
+      },
+        l = {
+          r = { ":FzfLua lsp_references<CR>", "References" },
+          d = { ":FzfLua lsp_definitions<CR>", "Definitions" },
+          D = { ":FzfLua lsp_declarations<CR>", "Declarations" },
+          i = { ":FzfLua lsp_implementations<CR>", "Implementations" },
+          s = {  ":FzfLua lsp_document_symbols<CR>", "Document Symbols" },
+          S = {  ":FzfLua lsp_workspace_symbols<CR>", "Workspace Symbols" },
+          --ca = {  ":FzfLua lsp_code_actions<CR>", "Code Actions" },
+          --ic = {  ":FzfLua lsp_incoming_calls<CR>", "Incoming Calls" },
+          --oc = {  ":FzfLua lsp_outgoing_calls<CR>", "Outgoing Calls" },
+          --dd = {  ":FzfLua lsp_document_diagnostics<CR>", "Document Diagnostics" },
+          --dw = {  ":FzfLua lsp_workspace_diagnostics<CR>", "Workspace Diagnostics" },
+        },
     },
-
   }
 
   whichkey.setup(conf)
