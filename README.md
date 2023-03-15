@@ -22,6 +22,9 @@ A bunch of files managed by Nix home-manager.
 
 ## TODOs
 
+
+### NVIM
+
 [ ] Not very happy with nix-cmp. It requires work to give it the same UX as coc.vim.
 
 - tab support
@@ -42,10 +45,15 @@ A bunch of files managed by Nix home-manager.
 
 - nvim-cmp
 
-[ ] unmap default commands
+[ ] unmap default fzf-lua commands
 
 [ ] Dig into lsp-config keymaps
 
 [ ] Review go.nvim
 - https://github.com/ray-x/go.nvim
 - https://medium.com/@yanglyu5201/neovim-setup-for-golang-programming-68ebf59336d9
+
+- [ ] Lacking tags - heirline.nvim could be useful for this.
+
+- https://neovim.io/doc/user/lua.html
+

@@ -30,15 +30,16 @@
     enable = true;
     vimAlias = true;
     extraConfig = ''
-      luafile ./config/nvim/settings/basics.lua
-      luafile ./config/nvim/settings/whichkey.lua
-      luafile ./config/nvim/settings/keymaps.lua
-      luafile ./config/nvim/plugins/nvim-tree.lua
-      luafile ./config/nvim/plugins/nvim-treesitter.lua
-      luafile ./config/nvim/plugins/lualine-nvim.lua
-      luafile ./config/nvim/plugins/nvim-lspconfig.lua
-      luafile ./config/nvim/plugins/nvim-cmp.lua
-      luafile ./config/nvim/plugins/toggleterm.lua
+      luafile $HOME/dotfiles/config/nvim/settings/basics.lua
+      luafile $HOME/dotfiles/config/nvim/settings/whichkey.lua
+      luafile $HOME/dotfiles/config/nvim/settings/keymaps.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/nvim-tree.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/nvim-treesitter.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/lualine-nvim.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/nvim-lspconfig.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/nvim-cmp.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/toggleterm.lua
+      luafile $HOME/dotfiles/config/nvim/plugins/gitsigns.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -64,6 +65,9 @@
         #fuzzy finder
         fzf-lua
 
+        #git
+        gitsigns-nvim
+
         #lsp
         nvim-lspconfig
 
@@ -79,3 +83,4 @@
     ];
   };
 }
+
