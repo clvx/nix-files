@@ -5,6 +5,12 @@
   home.homeDirectory = "/home/clvx";
   home.stateVersion = "22.11";
 
+  #TODO:
+  # add sessionVariables = {};
+  # add shellAliases = {};
+  # add git configs
+  # configure tmux
+
   home.packages = [
     #must haves
     pkgs.cowsay
@@ -12,7 +18,6 @@
     pkgs.ripgrep
     pkgs.tree
     pkgs.jq
-    pkgs.tmux
     pkgs.gcc
     pkgs.bat
     pkgs.z-lua
@@ -83,6 +88,15 @@
         cmp_luasnip
         lspkind-nvim
     ];
+  };
+  programs.tmux = {
+    enable = true;
+    sensibleOnTop = false; #removing tmux home-manager's defaults
+    baseIndex = 1;
+    newSession = true;
+    extraConfig =  ''
+      source $HOME/nix-files/config/tmux/tmux.conf
+    '';
   };
 }
 
