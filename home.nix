@@ -30,16 +30,17 @@
     enable = true;
     vimAlias = true;
     extraConfig = ''
-      luafile $HOME/dotfiles/config/nvim/settings/basics.lua
-      luafile $HOME/dotfiles/config/nvim/settings/whichkey.lua
-      luafile $HOME/dotfiles/config/nvim/settings/keymaps.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/nvim-tree.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/nvim-treesitter.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/lualine-nvim.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/nvim-lspconfig.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/nvim-cmp.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/toggleterm.lua
-      luafile $HOME/dotfiles/config/nvim/plugins/gitsigns.lua
+      source  $HOME/nix-files/config/nvim/settings/basics.vim
+      luafile $HOME/nix-files/config/nvim/settings/basics.lua
+      luafile $HOME/nix-files/config/nvim/settings/whichkey.lua
+      luafile $HOME/nix-files/config/nvim/settings/keymaps.lua
+      luafile $HOME/nix-files/config/nvim/plugins/nvim-tree.lua
+      luafile $HOME/nix-files/config/nvim/plugins/nvim-treesitter.lua
+      luafile $HOME/nix-files/config/nvim/plugins/lualine-nvim.lua
+      luafile $HOME/nix-files/config/nvim/plugins/nvim-lspconfig.lua
+      luafile $HOME/nix-files/config/nvim/plugins/nvim-cmp.lua
+      luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
+      luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
