@@ -15,6 +15,7 @@
     pkgs.tmux
     pkgs.gcc
     pkgs.bat
+    pkgs.z-lua
 
     #programming languages
     pkgs.go
