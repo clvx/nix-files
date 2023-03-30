@@ -2,7 +2,8 @@
   programs.home-manager.enable = true;
 
   home.username = "clvx";
-  home.homeDirectory = "/home/clvx";
+  #home.homeDirectory = "/home/clvx";
+  home.homeDirectory = "/Users/clvx";
   home.stateVersion = "22.11";
   home.sessionVariables = {
     SHELL = "zsh";
