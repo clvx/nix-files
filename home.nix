@@ -39,6 +39,8 @@
 
     #other packages
     pkgs.terraform
+    pkgs.kind
+    pkgs.kubectl
   ];
 
   programs.fzf = {
@@ -62,6 +64,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/nvim-cmp.lua
       luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
+      luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -102,6 +105,11 @@
         luasnip
         cmp_luasnip
         lspkind-nvim
+
+        ##go
+        vim-go
+        #go-nvim
+
     ];
   };
   programs.tmux = {
