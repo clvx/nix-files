@@ -20,6 +20,13 @@ A bunch of files managed by Nix home-manager.
     hash -r
     ```
 
+3. Update 
+
+    ```
+    nix flake update
+    nix run . switch -- --flake
+    ```
+
 ## TODOs
 
 

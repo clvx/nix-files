@@ -15,9 +15,15 @@
         defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
 
         homeConfigurations = {
-            "clvx" = home-manager.lib.homeManagerConfiguration {
+            "void" = home-manager.lib.homeManagerConfiguration {
                 # Note: I am sure this could be done better with flake-utils or something
                 #pkgs = nixpkgs.legacyPackages.x86_64-linux;
+                pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+
+                modules = [ ./home.nix ];
+            };
+            "abyss" = home-manager.lib.homeManagerConfiguration {
+                # Note: I am sure this could be done better with flake-utils or something
                 pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
                 modules = [ ./home.nix ];

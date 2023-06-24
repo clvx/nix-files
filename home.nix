@@ -24,6 +24,7 @@
     pkgs.gcc
     pkgs.bat
     pkgs.z-lua
+    pkgs.hey
 
     #prompt
     pkgs.starship
@@ -41,6 +42,8 @@
     pkgs.terraform
     pkgs.kind
     pkgs.kubectl
+    pkgs.kubeswitch
+    pkgs.direnv
   ];
 
   programs.fzf = {
@@ -140,6 +143,7 @@
     };
     initExtra = "
       eval \"$(starship init zsh)\"
+      eval \"$(direnv hook zsh)\"
     ";
     plugins = with pkgs; [
       {
