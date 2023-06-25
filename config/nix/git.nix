@@ -5,6 +5,7 @@
      userEmail = "michael.ibarra@gmail.com";
      aliases = {
        st = "status";
+       lone = "log --oneline --graph";
      };
    };
  }

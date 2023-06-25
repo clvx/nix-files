@@ -17,8 +17,13 @@ programs.zsh = {
       nohistory = "history | sed \"s/^\s*[0-9]*\s*\(.*\)/\1/\"";
     };
     initExtra = "
-      eval \"$(starship init zsh)\"
-      eval \"$(direnv hook zsh)\"
+eval \"$(starship init zsh)\"
+eval \"$(direnv hook zsh)\"
+
+function kport {
+    lsof -i tcp:$1 | grep LISTEN | awk '{print $2}'
+}
+      
     ";
     plugins = with pkgs; [
       {
