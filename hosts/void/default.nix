@@ -3,6 +3,6 @@
   home.username = "clvx";
   home.homeDirectory = "/home/clvx/";
   imports = [
-  ../../home.nix
+  ../../config/nix/home.nix
   ];
 }
