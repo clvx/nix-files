@@ -16,7 +16,7 @@ A bunch of files managed by Nix home-manager.
     ```
     git clone git@github.com:clvx/nix-files.git
     cd ./nix-files
-    nix run . switch -- --flake .
+    nix run . switch -- --flake .#<flake>
     hash -r
     ```
 
@@ -24,7 +24,7 @@ A bunch of files managed by Nix home-manager.
 
     ```
     nix flake update
-    nix run . switch -- --flake
+    nix run . switch -- --flake .#<flake>
     ```
 
 ## TODOs
