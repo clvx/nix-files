@@ -8,7 +8,7 @@ void() {
 
 #Executing abyss flake
 abyss() {
-    nix run . switch -- --flake .#abyss
+    nix run . switch -- --flake .#abyss 
     exec $SHELL -l
 }
 
