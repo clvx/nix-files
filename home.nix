@@ -1,8 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.home-manager.enable = true;
 
-  home.username = "clvx";
-  home.homeDirectory = "/home/clvx";
   home.stateVersion = "22.11";
   home.sessionVariables = {
     SHELL = "zsh";
@@ -198,4 +197,13 @@
     };
 
   };
+
+  programs.git = {
+     enable = true;
+     userName = "clvx";
+     userEmail = "michael.ibarra@gmail.com";
+     aliases = {
+       st = "status";
+     };
+   };
 }
