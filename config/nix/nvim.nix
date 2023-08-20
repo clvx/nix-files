@@ -59,6 +59,9 @@
         ##go
         vim-go
         #go-nvim
+        nvim-dap
+        nvim-dap-go
+        nvim-dap-ui
 
         #treesitter
         nvim-treesitter

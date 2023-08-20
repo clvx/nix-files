@@ -29,6 +29,20 @@
 
     #programming languages
     pkgs.go
+    pkgs.mockgen
+    pkgs.golangci-lint
+    pkgs.gotools
+    pkgs.govulncheck
+    pkgs.gomodifytags
+    pkgs.gotests
+    pkgs.iferr
+    pkgs.impl
+    pkgs.reftools
+    pkgs.delve
+    pkgs.richgo
+    pkgs.gofumpt
+    pkgs.gotestsum
+    pkgs.golines
 
     #language servers
     pkgs.gopls
