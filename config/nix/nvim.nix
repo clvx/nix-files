@@ -33,7 +33,6 @@
         nvim-tree-lua
 
         #eye candy
-        nvim-treesitter
         lualine-nvim
         toggleterm-nvim
         which-key-nvim
@@ -61,6 +60,23 @@
         vim-go
         #go-nvim
 
+        #treesitter
+        nvim-treesitter
+        nvim-treesitter-parsers.go
+        nvim-treesitter-parsers.jq
+        nvim-treesitter-parsers.html
+        nvim-treesitter-parsers.lua
+        nvim-treesitter-parsers.vim
+        nvim-treesitter-parsers.sql
+        nvim-treesitter-parsers.ini
+        nvim-treesitter-parsers.hcl
+        nvim-treesitter-parsers.cue
+        nvim-treesitter-parsers.css
+        nvim-treesitter-parsers.yaml
+        nvim-treesitter-parsers.yaml
+        nvim-treesitter-parsers.yaml
+        nvim-treesitter-parsers.yaml
+        nvim-treesitter-parsers.yaml
     ];
   };
 

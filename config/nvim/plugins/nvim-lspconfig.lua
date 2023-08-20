@@ -47,6 +47,16 @@ require('lspconfig')['tsserver'].setup{
 }
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.rnix.setup{}
+
+--enabling html
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
+
 require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {

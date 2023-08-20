@@ -2,7 +2,7 @@
 {
   programs.home-manager.enable = true;
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
   home.sessionVariables = {
     SHELL = "zsh";
     EDITOR = "nvim";
@@ -35,6 +35,7 @@
     pkgs.pyright
     pkgs.sumneko-lua-language-server
     pkgs.rnix-lsp
+    pkgs.vscode-langservers-extracted
 
     #other packages
     pkgs.terraform
