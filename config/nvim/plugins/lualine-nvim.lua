@@ -1,3 +1,6 @@
+--local function get_go_info()
+--  return  vim.g.go_echo_info
+--end
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -10,13 +13,13 @@ require('lualine').setup {
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
+    globalstatus = true,
+    refresh = { statusline = 1000,
       tabline = 1000,
       winbar = 1000,
     }
   },
+
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
@@ -34,7 +37,9 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
+  winbar = {
+    lualine_x = {'filename'},
+  },
   inactive_winbar = {},
   extensions = {}
 }
