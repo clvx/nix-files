@@ -1,12 +1,19 @@
 # Nix files
 
-A bunch of files managed by Nix home-manager.
+A bunch of Linux configurations managed by Nix Flakes
 
-## Install
+## Install NixOS
+
+After installing, execute:
+
+    
+    nixos-build switch --flake .#<flake-output>
+
+## Install standalone
 
 1. Install Nix
 
-    ```
+
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
     exec $SHELL -l
     ```
@@ -22,7 +29,7 @@ A bunch of files managed by Nix home-manager.
 
 3. Update 
 
-    ```
+
     nix flake update
     nix run . switch -- --flake .#<flake>
     ```
