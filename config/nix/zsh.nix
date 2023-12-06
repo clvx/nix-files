@@ -21,7 +21,7 @@ eval \"$(starship init zsh)\"
 eval \"$(direnv hook zsh)\"
 
 # lua exec path is defined in ZLUA_LUAEXE inside the z.lua. 
-eval \"$($HOME/.nix-profile/bin/z.lua --init zsh)\"
+eval \"$(/etc/profiles/per-user/clvx/bin/z.lua --init zsh)\"
 
 function kport {
     lsof -i tcp:$1 | grep LISTEN | awk '{print $2}'

@@ -1,28 +1,41 @@
 {
-  description = "My Home Manager Flake";
+  description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-    outputs = {nixpkgs, home-manager, ...}: {
-        defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-        defaultPackage.x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
-        defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-
-        homeConfigurations = {
-            "void" = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.x86_64-linux;
-                modules = [ ./hosts/void/default.nix ];
-            };
-            "abyss" = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-                modules = [ ./hosts/abyss/default.nix ];
-            };
-        };
+  outputs = { self, nixpkgs, home-manager, ... }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
     };
+
+  in {
+    nixosConfigurations = {
+      void = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+	    modules = [
+	      ./hardware-configuration.nix
+          ./configuration.nix
+	      home-manager.nixosModules.home-manager 
+	      {
+	        home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              users.clvx = ./config/nix/home.nix;
+	        };
+	      }
+	    ];
+      };
+    };
+  };
 }
