@@ -48,6 +48,7 @@
       telegram-desktop
       bitwarden
       slack
+      nextcloud-client
       
     ];
   };
