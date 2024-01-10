@@ -24,8 +24,8 @@
       void = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
 	    modules = [
-	      ./hardware-configuration.nix
-          ./configuration.nix
+	      ./hosts/void/hardware-configuration.nix
+          ./hosts/void/configuration.nix
 	      home-manager.nixosModules.home-manager 
 	      {
 	        home-manager = {
@@ -35,6 +35,21 @@
 	        };
 	      }
 	    ];
+      };
+      rift = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/rift/hardware-configuration.nix
+          ./hosts/rift/configuration.nix
+          home-manager.nixosModules.home-manager 
+          {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              users.clvx = ./config/nix/home.nix;
+            };
+          }
+        ];
       };
     };
   };
