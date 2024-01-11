@@ -1,14 +1,16 @@
 { config, lib, pkgs, ... }:
 {
-  #Boot
+  #Boot - using systemd-boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  #zfs configs
   boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "43706db7"; #zfs hostId
 
   #Networking
   networking.hostName = "rift"; # Define your hostname.
   networking.networkmanager.enable = true;
-  networking.hostId = "43706db7"; #zfs hostId
 
   #Locale
   time.timeZone = "America/Denver";
@@ -25,11 +27,10 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  #Display Manager
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
   };
