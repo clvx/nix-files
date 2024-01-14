@@ -3,14 +3,17 @@
 #DISK='/dev/disk/by-id/ata-FOO /dev/disk/by-id/nvme-BAR'
 DISK=''
 
+echo "Creating Mount dir'
 MNT=$(mktemp -d)
 SWAPSIZE=4
 RESERVE=1
 
+echo "enabling flakes"
 #enable Nix Flakes
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
+echo "installing dependencies"
 #install installation dependencies
 if ! command -v git; then nix-env -f '<nixpkgs>' -iA git; fi
 if ! command -v partprobe;  then nix-env -f '<nixpkgs>' -iA parted; fi
@@ -34,16 +37,19 @@ partition_disk () {
  udevadm settle
 }
 
+echo "partitioning disk"
 for i in ${DISK}; do
    partition_disk "${i}"
 done
 
+echo "creating encrypted swap"
 for i in ${DISK}; do
    cryptsetup open --type plain --key-file /dev/random "${i}"-part4 "${i##*/}"-part4
    mkswap /dev/mapper/"${i##*/}"-part4
    swapon /dev/mapper/"${i##*/}"-part4
 done
 
+echo "enabling Luks on root"
 for i in ${DISK}; do
    # see PASSPHRASE PROCESSING section in cryptsetup(8)
    printf "YOUR_PASSWD" | cryptsetup luksFormat --type luks2 "${i}"-part3 -
@@ -51,6 +57,7 @@ for i in ${DISK}; do
 done
 
 
+echo "creating bpool"
 # shellcheck disable=SC2046
 zpool create -o compatibility=legacy  \
     -o ashift=12 \
@@ -69,6 +76,7 @@ zpool create -o compatibility=legacy  \
        printf '%s ' "${i}-part2";
       done)
 
+echo "creating rpool"
 # shellcheck disable=SC2046
 zpool create \
     -o ashift=12 \
@@ -88,6 +96,8 @@ zpool create \
       printf '/dev/mapper/luks-rpool-%s ' "${i##*/}-part3";
      done)
 
+
+echo "mounting rpool"
 zfs create -o mountpoint=legacy     rpool/nixos/root
 mount -t zfs rpool/nixos/root "${MNT}"/
 zfs create -o mountpoint=legacy rpool/nixos/home
@@ -107,6 +117,7 @@ mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
 zfs create -o mountpoint=legacy rpool/nixos/empty
 zfs snapshot rpool/nixos/empty@start
 
+echo "mounting bpool"
 for i in ${DISK}; do
  mkfs.vfat -n EFI "${i}"-part1
  mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
