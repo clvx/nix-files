@@ -59,6 +59,8 @@ done
 
 echo "creating NIXBOOT"
 # shellcheck disable=SC2046
+#
+  #mirror \ # Add this line after NIXBOOT
 zpool create -o compatibility=legacy  \
     -o ashift=12 \
     -o autotrim=on \
@@ -71,13 +73,13 @@ zpool create -o compatibility=legacy  \
     -O mountpoint=/boot \
     -R "${MNT}" \
     NIXBOOT \
-  #mirror \ #uncomment this line for mirror
     $(for i in ${DISK}; do
        printf '%s ' "${i}-part2";
       done)
 
 echo "creating NIXROOT"
 # shellcheck disable=SC2046
+    #mirror \ # Add this line after NIXROOT
 zpool create \
     -o ashift=12 \
     -o autotrim=on \
@@ -91,7 +93,6 @@ zpool create \
     -O xattr=sa \
     -O mountpoint=/ \
     NIXROOT \
-    #mirror \ #uncomment this line for mirror
    $(for i in ${DISK}; do
       printf '/dev/mapper/luks-NIXROOT-%s ' "${i##*/}-part3";
      done)
