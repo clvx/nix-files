@@ -3,7 +3,7 @@
 #DISK='/dev/disk/by-id/ata-FOO /dev/disk/by-id/nvme-BAR'
 DISK=''
 
-echo "Creating Mount dir'
+echo "Creating Mount dir"
 MNT=$(mktemp -d)
 SWAPSIZE=4
 RESERVE=1
