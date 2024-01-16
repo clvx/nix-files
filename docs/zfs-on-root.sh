@@ -25,8 +25,8 @@ partition_disk () {
  parted --script --align=optimal  "${disk}" -- \
  mklabel gpt \
  mkpart EFI 2MiB 1GiB \
- mkpart NIXBOOT 1GiB 5GiB \
- mkpart NIXROOT 5GiB -$((SWAPSIZE + RESERVE))GiB \
+ mkpart bpool 1GiB 5GiB \
+ mkpart rpool 5GiB -$((SWAPSIZE + RESERVE))GiB \
  mkpart swap  -$((SWAPSIZE + RESERVE))GiB -"${RESERVE}"GiB \
  mkpart BIOS 1MiB 2MiB \
  set 1 esp on \
@@ -53,14 +53,14 @@ echo "enabling Luks on root"
 for i in ${DISK}; do
    # see PASSPHRASE PROCESSING section in cryptsetup(8)
    printf "YOUR_PASSWD" | cryptsetup luksFormat --type luks2 "${i}"-part3 -
-   printf "YOUR_PASSWD" | cryptsetup luksOpen "${i}"-part3 luks-NIXROOT-"${i##*/}"-part3 -
+   printf "YOUR_PASSWD" | cryptsetup luksOpen "${i}"-part3 luks-rpool-"${i##*/}"-part3 -
 done
 
 
-echo "creating NIXBOOT"
+echo "creating bpool"
 # shellcheck disable=SC2046
 #
-  #mirror \ # Add this line after NIXBOOT
+  #mirror \ # Add this line after bpool
 zpool create -o compatibility=legacy  \
     -o ashift=12 \
     -o autotrim=on \
@@ -72,14 +72,14 @@ zpool create -o compatibility=legacy  \
     -O xattr=sa \
     -O mountpoint=/boot \
     -R "${MNT}" \
-    NIXBOOT \
+    bpool \
     $(for i in ${DISK}; do
        printf '%s ' "${i}-part2";
       done)
 
-echo "creating NIXROOT"
+echo "creating rpool"
 # shellcheck disable=SC2046
-    #mirror \ # Add this line after NIXROOT
+    #mirror \ # Add this line after rpool
 zpool create \
     -o ashift=12 \
     -o autotrim=on \
@@ -92,33 +92,33 @@ zpool create \
     -O relatime=on \
     -O xattr=sa \
     -O mountpoint=/ \
-    NIXROOT \
+    rpool \
    $(for i in ${DISK}; do
-      printf '/dev/mapper/luks-NIXROOT-%s ' "${i##*/}-part3";
+      printf '/dev/mapper/luks-rpool-%s ' "${i##*/}-part3";
      done)
 
 
-echo "mounting NIXROOT"
-zfs create -o mountpoint=legacy -p NIXROOT/nixos/root
-mount -t zfs NIXROOT/nixos/root "${MNT}"/
-zfs create -o mountpoint=legacy NIXROOT/nixos/home
+echo "mounting rpool"
+zfs create -o mountpoint=legacy -p rpool/nixos/root
+mount -t zfs rpool/nixos/root "${MNT}"/
+zfs create -o mountpoint=legacy rpool/nixos/home
 mkdir "${MNT}"/home
-mount -t zfs NIXROOT/nixos/home "${MNT}"/home
-zfs create -o mountpoint=none   NIXROOT/nixos/var
-zfs create -o mountpoint=legacy NIXROOT/nixos/var/lib
-zfs create -o mountpoint=legacy NIXROOT/nixos/var/log
-zfs create -o mountpoint=none NIXBOOT/nixos
-zfs create -o mountpoint=legacy NIXBOOT/nixos/root
+mount -t zfs rpool/nixos/home "${MNT}"/home
+zfs create -o mountpoint=none   rpool/nixos/var
+zfs create -o mountpoint=legacy rpool/nixos/var/lib
+zfs create -o mountpoint=legacy rpool/nixos/var/log
+zfs create -o mountpoint=none bpool/nixos
+zfs create -o mountpoint=legacy bpool/nixos/root
 mkdir "${MNT}"/boot
-mount -t zfs NIXBOOT/nixos/root "${MNT}"/boot
+mount -t zfs bpool/nixos/root "${MNT}"/boot
 mkdir -p "${MNT}"/var/log
 mkdir -p "${MNT}"/var/lib
-mount -t zfs NIXROOT/nixos/var/lib "${MNT}"/var/lib
-mount -t zfs NIXROOT/nixos/var/log "${MNT}"/var/log
-zfs create -o mountpoint=legacy NIXROOT/nixos/empty
-zfs snapshot NIXROOT/nixos/empty@start
+mount -t zfs rpool/nixos/var/lib "${MNT}"/var/lib
+mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
+zfs create -o mountpoint=legacy rpool/nixos/empty
+zfs snapshot rpool/nixos/empty@start
 
-echo "mounting NIXBOOT"
+echo "mounting bpool"
 for i in ${DISK}; do
  mkfs.vfat -n EFI "${i}"-part1
  mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
