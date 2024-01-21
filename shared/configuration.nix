@@ -57,12 +57,12 @@ in {
     packages = with pkgs; [
       firefox
       thunderbird
-      spotify
-      zoom-us
-      todoist-electron
+      #spotify
+      #zoom-us
+      #todoist-electron
       telegram-desktop
       bitwarden
-      slack
+      #slack
       nextcloud-client
     ];
     initialPassword = "noadmin";
@@ -116,7 +116,7 @@ in {
   };
 
   nix.settings.experimental-features = "nix-command flakes";
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # Safety mechanism: refuse to build unless everything is
   # tracked by git
