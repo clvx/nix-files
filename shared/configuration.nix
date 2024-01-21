@@ -1,19 +1,20 @@
-{ config, lib, pkgs, ... }:
-{
-  #Boot - using systemd-boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+# configuration in this file is shared by all hosts
 
-  #zfs configs
-  boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "43706db7"; #zfs hostId
+# review ./modules for hw boot config
+# review ./hosts/${host}/default.nix for specifics.
+
+# TODO: a few things to improve
+# - Boot options could vary as some hosts and cloud based deployments might not use zfs. Maybe push the filesystem options per host on in modules.
+# - gui settings should be a module as cloud based deployments might not use a GUI. Same with sound and vm's.
+
+{ pkgs, pkgs-unstable, inputs, ... }:
+let inherit (inputs) self;
+in {
 
   #Networking
-  networking.hostName = "rift"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   #Locale
-  time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -27,6 +28,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  #GUI
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
@@ -67,32 +69,66 @@
   };
 
   #Environment
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+    "gnomeExtensions.dash-to-dock"
+    "gnomeExtensions.appindicator"
+    ;
+    # By default, the system will only use packages from the
+    # stable channel. i.e.
+    # inherit (pkg) my-favorite-stable-package;
+    # You can selectively install packages
+    # from the unstable channel. Such as
+    # inherit (pkgs-unstable) my-favorite-unstable-package;
+    # You can also add more
+    # channels to pin package version.
+  };
   services.udev.packages = with pkgs; [ 
     gnome.gnome-settings-daemon 
   ];
   nixpkgs.config.firefox.enableGnomeExtensions = true;
   services.gnome.gnome-browser-connector.enable = true;
 
+  #Fonts
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+  ];
+
   #System services
-  services.printing.enable = true;
-  services.openssh.enable = true;
-  system.stateVersion = "23.05"; # Did you read the comment?
+  services = {
+    printing.enable = true;
+    openssh = {
+      enable = true;
+      settings = { PasswordAuthentication = false; };
+    };
+  };
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   #Default programs
-  programs.neovim.enable = true;
-  programs.git.enable = true;
-  programs.zsh.enable = true;
+  programs = { 
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    git.enable = true;
+    zsh.enable = true;
+  };
+
   nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.config.allowUnfree = true;
 
-  #Fonts
-  fonts.fonts = with pkgs; [
-  (nerdfonts.override { fonts = [ "Hack" ]; })
-  ];
+  # Safety mechanism: refuse to build unless everything is
+  # tracked by git
+  system.configurationRevision = if (self ? rev) then
+    self.rev
+  else
+    throw "refuse to build: git tree is dirty";
+
+  # let nix commands follow system nixpkgs revision
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  # you can then test any package in a nix shell, such as
+  # $ nix shell nixpkgs#neovim
 
   # following configuration is added only when building VM with 
   # nixos build-vm
