@@ -1,8 +1,8 @@
 { config, pkgs, lib, inputs, modulesPath, ... }: {
   zfs-root = {
     boot = {
-      devNodes = "#TBD";
-      bootDevices = [  "TBD" ];
+      devNodes = "/dev/disk/by-id/";
+      bootDevices = [  "nvme-eui.0025384861b61f83" ];
       immutable.enable = false;
       removableEfi = true;
       luks.enable = true;
@@ -10,7 +10,7 @@
   };
   boot.zfs.forceImportRoot = false;
   boot.initrd.systemd.enable = true;
-  boot.initrd.availableKernelModules = [ "kernelModules_placeholder" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.kernelParams = [ ];
 
   # read changeHostName.txt file.
@@ -19,7 +19,7 @@
   time.timeZone = "America/Denver";
 
   #ZFS configs
-  networking.hostId = "639fbcd5";
+  networking.hostId = "97dff6c2";
 
   ## enable ZFS auto snapshot on datasets
   ## You need to set the auto snapshot property to "true"
