@@ -71,8 +71,8 @@ in {
   #Environment
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
-    "gnomeExtensions.dash-to-dock"
-    "gnomeExtensions.appindicator"
+    #"gnomeExtensions.dash-to-dock"
+    #"gnomeExtensions.appindicator"
     ;
     # By default, the system will only use packages from the
     # stable channel. i.e.
@@ -86,11 +86,11 @@ in {
   services.udev.packages = with pkgs; [ 
     gnome.gnome-settings-daemon 
   ];
-  nixpkgs.config.firefox.enableGnomeExtensions = true;
+  #nixpkgs.config.firefox.enableGnomeExtensions = true;
   services.gnome.gnome-browser-connector.enable = true;
 
   #Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
@@ -118,12 +118,12 @@ in {
   nix.settings.experimental-features = "nix-command flakes";
   #nixpkgs.config.allowUnfree = true;
 
-  # Safety mechanism: refuse to build unless everything is
-  # tracked by git
-  system.configurationRevision = if (self ? rev) then
-    self.rev
-  else
-    throw "refuse to build: git tree is dirty";
+  ## Safety mechanism: refuse to build unless everything is
+  ## tracked by git
+  #system.configurationRevision = if (self ? rev) then
+  #  self.rev
+  #else
+  #  throw "refuse to build: git tree is dirty";
 
   # let nix commands follow system nixpkgs revision
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
