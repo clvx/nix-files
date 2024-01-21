@@ -2,7 +2,7 @@
 {
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.sessionVariables = {
     SHELL = "zsh";
     EDITOR = "nvim";
