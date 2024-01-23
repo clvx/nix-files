@@ -116,7 +116,6 @@ in {
   };
 
   nix.settings.experimental-features = "nix-command flakes";
-  nixpkgs.config.allowUnfree = true;
 
   ## Safety mechanism: refuse to build unless everything is
   ## tracked by git

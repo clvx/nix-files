@@ -52,7 +52,7 @@
     pkgs.vscode-langservers-extracted
 
     #other packages
-    #pkgs.terraform
+    pkgs.terraform
     pkgs.kind
     pkgs.kubectl
     pkgs.kubeswitch

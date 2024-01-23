@@ -55,17 +55,16 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-	      useGlobalPkgs = true;
+	          useGlobalPkgs = true;
               useUserPackages = true;
               users = {
                 clvx = ./config/nix/home.nix;
                 # add more user configurations here.
               };
-	    };
+	        };
           }
         ];
       };
-
   in {
     nixosConfigurations = {
         rift = mkHost "rift" "x86_64-linux";
