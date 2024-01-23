@@ -18,7 +18,7 @@
         pkgs = import nixpkgs {
           inherit system;
           # settings to nixpkgs goes to here
-          nixpkgs.config = {
+          config = {
             allowUnfree = true;
           };
         };
@@ -31,7 +31,7 @@
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             # settings to nixpkgs-unstable goes to here
-            nixpkgs-unstable.config = {
+            config = {
               allowUnfree = true;
             };
           };

@@ -99,7 +99,7 @@ in {
     printing.enable = true;
     openssh = {
       enable = true;
-      settings = { PasswordAuthentication = false; };
+      #settings = { PasswordAuthentication = false; };
     };
   };
   system.stateVersion = "23.11"; # Did you read the comment?
@@ -116,7 +116,7 @@ in {
   };
 
   nix.settings.experimental-features = "nix-command flakes";
-  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   ## Safety mechanism: refuse to build unless everything is
   ## tracked by git
