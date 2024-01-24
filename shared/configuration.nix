@@ -57,12 +57,12 @@ in {
     packages = with pkgs; [
       firefox
       thunderbird
-      #spotify
-      #zoom-us
-      #todoist-electron
+      spotify
+      zoom-us
+      todoist-electron
       telegram-desktop
       bitwarden
-      #slack
+      slack
       nextcloud-client
     ];
     initialPassword = "noadmin";
@@ -86,7 +86,7 @@ in {
   services.udev.packages = with pkgs; [ 
     gnome.gnome-settings-daemon 
   ];
-  #nixpkgs.config.firefox.enableGnomeExtensions = true;
+  #nixpkgs.confeg.firefx.enableGnomeExtensions = true;
   services.gnome.gnome-browser-connector.enable = true;
 
   #Fonts
