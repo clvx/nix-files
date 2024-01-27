@@ -25,15 +25,15 @@ partition_disk () {
 
  parted --script --align=optimal  "${disk}" -- \
  mklabel gpt \
- mkpart EFI 2MiB 1GiB \
- mkpart rpool 5GiB -$((SWAPSIZE + RESERVE))GiB \
+ mkpart EFI 1MiB 4GiB \
+ mkpart rpool 4GiB -$((SWAPSIZE + RESERVE))GiB \
  mkpart swap  -$((SWAPSIZE + RESERVE))GiB -"${RESERVE}"GiB \
  set 1 esp on \
 
  partprobe "${disk}"
 }
 
-echo "partitioning disk"
+echo "partitioning disks"
 for i in ${DISK}; do
    partition_disk "${i}"
 done
@@ -54,7 +54,6 @@ done
 
 echo "creating rpool"
 # shellcheck disable=SC2046
-    #mirror \ # Add this line after rpool
 zpool create \
     -o ashift=12 \
     -o autotrim=on \
@@ -72,10 +71,8 @@ zpool create \
       printf '/dev/mapper/luks-rpool-%s ' "${i##*/}-part2";
      done)
 
-
 echo "create root system container"
-zfs create -o canmount=noauto -o mountpoint=legacy -p rpool/root
-
+zfs create -o canmount=noauto -o mountpoint=legacy rpool/root
 
 echo "create system datasets"
 zfs create -o mountpoint=legacy rpool/home
@@ -84,10 +81,10 @@ mount -o X-mount.mkdir -t zfs rpool/home "${MNT}"/home
 
 echo "format and mount ESP - this needs mirroring as only one is used as /boot"
 for i in ${DISK}; do
-  mkfs.vfat -n EFI "{i}"-part1
+ mkfs.vfat -n EFI "${i}"-part1
 done
 
 for i in ${DISK}; do
-  mount -t vfat -o fmask=0077,dmask=0077,iocharset=iso8859-1,X-mount.mkdir "${i}"-part1 "${MNT}"/boot
-  break
+ mount -t vfat -o fmask=0077,dmask=0077,iocharset=iso8859-1,X-mount.mkdir "${i}"-part1 "${MNT}"/boot
+ break
 done
