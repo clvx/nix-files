@@ -42,7 +42,7 @@
 
         modules = [
           # Root on ZFS related configuration
-          ./modules
+          #./modules
 
           # Configuration shared by all hosts
           ./shared/configuration.nix
@@ -55,20 +55,20 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-	          useGlobalPkgs = true;
+	      useGlobalPkgs = true;
               useUserPackages = true;
               users = {
                 clvx = ./config/nix/home.nix;
                 # add more user configurations here.
               };
-	        };
+	    };
           }
         ];
       };
   in {
     nixosConfigurations = {
-        rift = mkHost "rift" "x86_64-linux";
-        void = mkHost "void" "x86_64-linux";
+      rift = mkHost "rift" "x86_64-linux";
+      void = mkHost "void" "x86_64-linux";
     };
   };
 }

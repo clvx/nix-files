@@ -3,15 +3,20 @@
 #Executing void flake
 void() {
     nixos-rebuild switch --flake .#void
-    exec $SHELL -l
+    #exec $SHELL -l
+}
+
+#Executing abyss flake
+rift() {
+    nixos-rebuild switch --flake .#abyss
+    #exec $SHELL -l
 }
 
 #Executing abyss flake
 abyss() {
     nixos-rebuild switch --flake .#abyss
-    exec $SHELL -l
+    #exec $SHELL -l
 }
-
 
 # Usage ./run.sh void|abyss
 # check whether user had supplied -h or --help . If yes display usage

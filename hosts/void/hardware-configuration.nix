@@ -4,30 +4,36 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
-
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  #TODO: migrate this part
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ed8ab2df-1422-4442-8539-9a73a9786157";
-      fsType = "ext4";
+    { device = "rpool/root";
+      fsType = "zfs";
     };
 
-  boot.initrd.luks.devices."luks-2892b5ed-d1e7-479d-a9ae-b380cbf251a8".device = "/dev/disk/by-uuid/2892b5ed-d1e7-479d-a9ae-b380cbf251a8";
+  fileSystems."/home" =
+    { device = "rpool/home";
+      fsType = "zfs";
+    };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/720D-3F12";
+    { device = "/dev/disk/by-uuid/931A-B68C";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b46d209c-5479-4101-8d6c-2dd9a3784ef6"; }
+    [ { device = "/dev/disk/by-uuid/6e7f8ecc-b0b8-4307-91e5-5894bddc3c56"; }
+      { device = "/dev/disk/by-uuid/ed236610-51e3-4b21-815c-5c9117b62ea3"; }
     ];
+
+  boot.initrd.luks.devices = {
+    "luks-rpool-nvme-eui.002538b81150152a-part2".device = "/dev/disk/by-id/nvme-eui.002538b81150152a-part2";
+    "luks-rpool-nvme-eui.002538ba115083f3-part2".device = "/dev/disk/by-id/nvme-eui.002538ba115083f3-part2";
+  };
+
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
