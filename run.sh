@@ -1,17 +1,9 @@
 #!/bin/bash
 
 #Executing void flake
-void() {
-    nixos-rebuild switch --flake .#void
-    exec $SHELL -l
+run() {
+    nixos-rebuild switch --flake .#$1
 }
-
-#Executing abyss flake
-abyss() {
-    nixos-rebuild switch --flake .#abyss
-    exec $SHELL -l
-}
-
 
 # Usage ./run.sh void|abyss
 # check whether user had supplied -h or --help . If yes display usage
@@ -21,7 +13,7 @@ then
 	exit 0
 fi 
 
-$1
+run $1
 
 ## adding this at initial setup
 #command -v zsh | sudo tee -a /etc/shells

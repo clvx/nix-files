@@ -69,20 +69,32 @@ in {
   };
 
   #Environment
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-    #"gnomeExtensions.dash-to-dock"
-    #"gnomeExtensions.appindicator"
-    ;
-    # By default, the system will only use packages from the
-    # stable channel. i.e.
-    # inherit (pkg) my-favorite-stable-package;
-    # You can selectively install packages
-    # from the unstable channel. Such as
-    # inherit (pkgs-unstable) my-favorite-unstable-package;
-    # You can also add more
-    # channels to pin package version.
-  };
+  # environment.SystemPackages requires an attribute set which means any 
+  # function that can return an attribute set can be called as a value like 
+  # buildints.attrValues {
+  #  inherit (pkgs)
+  #  myPackage
+  #  ;
+  #  inherit (pkgs-unstable)
+  #  myPackage
+  #  ;
+  #};.
+  # Also, as long as statement inside the list returns an element for the 
+  # attribute, it will valid like
+  # = [ 
+  #    ...
+  #    (builtins.getFlake "flake-url")
+  #    ...
+  #   ];
+  # Review https://nixos.org/manual/nix/stable/language/constructs 
+  environment.systemPackages = [
+    pkgs.gnomeExtensions.dash-to-dock
+    pkgs.gnomeExtensions.appindicator
+    pkgs-unstable.gnomeExtensions.ddterm
+    pkgs-unstable.gnomeExtensions.vitals
+  ];
+  # Also, a custom package can be built and pass as a single package: 
+  # https://nixos.org/manual/nixos/stable/#sec-custom-packages
   services.udev.packages = with pkgs; [ 
     gnome.gnome-settings-daemon 
   ];
