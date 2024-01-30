@@ -93,6 +93,21 @@ in {
     pkgs-unstable.gnomeExtensions.ddterm
     pkgs-unstable.gnomeExtensions.vitals
   ];
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    gnome-music
+    gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    totem # video player
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+  ]);
+
   # Also, a custom package can be built and pass as a single package: 
   # https://nixos.org/manual/nixos/stable/#sec-custom-packages
   services.udev.packages = with pkgs; [ 
