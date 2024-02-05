@@ -90,6 +90,7 @@ in {
   environment.systemPackages = [
     pkgs.gnomeExtensions.dash-to-dock
     pkgs.gnomeExtensions.appindicator
+    pkgs.libreoffice-qt
     pkgs-unstable.gnomeExtensions.ddterm
     pkgs-unstable.gnomeExtensions.vitals
   ];
@@ -140,6 +141,7 @@ in {
     };
     git.enable = true;
     zsh.enable = true;
+    steam.enable = true;
   };
 
   nix.settings.experimental-features = "nix-command flakes";
