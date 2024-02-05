@@ -44,6 +44,7 @@
         #git
         gitsigns-nvim
         git-blame-nvim
+        vim-fugitive
 
         #lsp
         nvim-lspconfig
