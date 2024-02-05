@@ -16,6 +16,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
+      luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -42,6 +43,7 @@
 
         #git
         gitsigns-nvim
+        git-blame-nvim
 
         #lsp
         nvim-lspconfig
