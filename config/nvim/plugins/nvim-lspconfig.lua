@@ -45,7 +45,16 @@ require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require'lspconfig'.gopls.setup{}
+require'lspconfig'.gopls.setup{
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+}
 require'lspconfig'.rnix.setup{}
 
 --enabling html
