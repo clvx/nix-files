@@ -64,6 +64,7 @@ in {
       bitwarden
       slack
       nextcloud-client
+      wl-clipboard
     ];
     initialPassword = "noadmin";
   };
