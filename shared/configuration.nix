@@ -94,6 +94,7 @@ in {
     pkgs.libreoffice-qt
     pkgs-unstable.gnomeExtensions.ddterm
     pkgs-unstable.gnomeExtensions.vitals
+    pkgs-unstable.obsidian
   ];
 
   environment.gnome.excludePackages = (with pkgs; [
