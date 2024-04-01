@@ -91,3 +91,8 @@ for i in ${DISK}; do
  mount -t vfat -o fmask=0077,dmask=0077,iocharset=iso8859-1,X-mount.mkdir "${i}"-part1 "${MNT}"/boot
  break
 done
+
+
+
+echo "Generating configuration"
+nixos-generate-config --root "${MNT}"
