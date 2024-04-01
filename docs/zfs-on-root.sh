@@ -1,7 +1,10 @@
 #https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
 
-#DISK='/dev/disk/by-id/ata-FOO /dev/disk/by-id/nvme-BAR'
-DISK='/dev/disk/by-id/nvme-eui.002538b81150152a /dev/disk/by-id/nvme-eui.002538ba115083f3'
+#void
+#DISK='/dev/disk/by-id/nvme-eui.002538b81150152a /dev/disk/by-id/nvme-eui.002538ba115083f3'
+
+#rift
+#DISK='/dev/disk/by-id/nvme-eui.0025384861b61f83'
 
 
 echo "Creating Mount dir"
