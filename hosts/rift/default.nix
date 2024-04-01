@@ -1,25 +1,28 @@
-{ config, pkgs, lib, inputs, modulesPath, ... }: {
-  zfs-root = {
-    boot = {
-      devNodes = "/dev/disk/by-id/";
-      bootDevices = [  "nvme-eui.0025384861b61f83" ];
-      immutable.enable = false;
-      removableEfi = true;
-      luks.enable = true;
-    };
-  };
-  boot.zfs.forceImportRoot = false;
-  boot.initrd.systemd.enable = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.kernelParams = [ ];
+{ config, lib, pkgs, modulesPath, ... }:
+{
+ # import preconfigured profiles
+ imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      (modulesPath + "/installer/scan/not-detected.nix")
+      # (modulesPath + "/profiles/hardened.nix")
+      # (modulesPath + "/profiles/qemu-guest.nix")
+    ];
 
-  # read changeHostName.txt file.
-  networking.hostName = "rift";
+  #TODO: this boot options need to be updated
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  #This is good
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+
+  networking.hostName = "void";
+  #networking.networkmanager.enable = true;
 
   time.timeZone = "America/Denver";
 
   #ZFS configs
-  networking.hostId = "97dff6c2";
+  networking.hostId = "810dc719";
 
   ## enable ZFS auto snapshot on datasets
   ## You need to set the auto snapshot property to "true"
@@ -33,10 +36,4 @@
   };
 
 
-  # import preconfigured profiles
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    # (modulesPath + "/profiles/hardened.nix")
-    # (modulesPath + "/profiles/qemu-guest.nix")
-  ];
 }
