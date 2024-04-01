@@ -48,7 +48,7 @@
     pkgs.gopls
     pkgs.pyright
     pkgs.sumneko-lua-language-server
-    pkgs.rnix-lsp
+    #pkgs.rnix-lsp
     pkgs.vscode-langservers-extracted
 
     #other packages

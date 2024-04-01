@@ -20,6 +20,9 @@
           # settings to nixpkgs goes to here
           config = {
             allowUnfree = true;
+            #permittedInsecurePackages = [
+            #  "nix-2.15.3"
+            #];
           };
         };
 
