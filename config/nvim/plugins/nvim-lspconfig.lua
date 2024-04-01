@@ -55,7 +55,7 @@ require'lspconfig'.gopls.setup{
     },
   },
 }
-require'lspconfig'.rnix.setup{}
+require'lspconfig'.nil_ls.setup{}
 
 --enabling html
 --Enable (broadcasting) snippet capability for completion
