@@ -14,7 +14,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   #This is good
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
 
   networking.hostName = "void";
   #networking.networkmanager.enable = true;

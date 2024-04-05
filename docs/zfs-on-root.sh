@@ -8,9 +8,12 @@
 
 
 echo "Creating Mount dir"
-MNT=$(mktemp -d)
+MNT=/tmp/nixos-install
 SWAPSIZE=4
 RESERVE=1
+
+echo "creating installation directory"
+mkdir -p ${MNT}
 
 echo "enabling flakes"
 #enable Nix Flakes
