@@ -57,6 +57,8 @@
     pkgs.kubectl
     pkgs.kubeswitch
     pkgs.direnv
+    #llm
+    pkgs.ollama
   ];
 
 }

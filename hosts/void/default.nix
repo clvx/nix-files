@@ -17,6 +17,11 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
 
   networking.hostName = "void";
+  networking.firewall = {
+    allowedTCPPorts = [ 
+      11434  #ollama
+    ];
+  };
   #networking.networkmanager.enable = true;
 
   time.timeZone = "America/Denver";
@@ -34,6 +39,4 @@
       monthly = 48;
     };
   };
-
-
 }
