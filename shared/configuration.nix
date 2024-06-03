@@ -52,7 +52,11 @@ in {
   users.users.clvx = {
     isNormalUser = true;
     description = "Luis M Ibarra";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel"
+      "libvirtd"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       firefox
@@ -143,7 +147,7 @@ in {
     };
     git.enable = true;
     zsh.enable = true;
-    steam.enable = true;
+    steam.enable = false;
   };
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -162,13 +166,28 @@ in {
 
   # following configuration is added only when building VM with 
   # nixos build-vm
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize =  4096;
-      cores = 3;         
-      forwardPorts = [
-        { from = "host"; host.port = 2222; guest.port = 22; }
-      ];
+  virtualisation = {
+    vmVariant = {
+      virtualisation = {
+        memorySize =  4096;
+        cores = 3;         
+        forwardPorts = [
+          { from = "host"; host.port = 2222; guest.port = 22; }
+        ];
+      };
+    };
+
+    # enabling libvirt + qemu
+    # svm or vmx must be enabled in BIOS/UEFI
+    # reference: https://discourse.nixos.org/t/set-up-vagrant-with-libvirt-qemu-kvm-on-nixos/14653
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm; #only emulates host arch, smaller download
+        swtpm.enable = true; # allows for creating emulated tpm
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
     };
   };
 }

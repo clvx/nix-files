@@ -57,6 +57,9 @@
     pkgs.kubectl
     pkgs.kubeswitch
     pkgs.direnv
+
+    pkgs.vagrant
+
     #llm
     pkgs.ollama
   ];
