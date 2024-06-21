@@ -96,6 +96,7 @@ in {
     pkgs.gnomeExtensions.dash-to-dock
     pkgs.gnomeExtensions.appindicator
     pkgs.libreoffice-qt
+    pkgs.element-desktop
     pkgs-unstable.gnomeExtensions.ddterm
     pkgs-unstable.gnomeExtensions.vitals
     pkgs-unstable.obsidian

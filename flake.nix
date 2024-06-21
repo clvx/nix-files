@@ -20,6 +20,11 @@
           # settings to nixpkgs goes to here
           config = {
             allowUnfree = true;
+            #matrix
+            element-web.conf = {
+              show_labs_settings = true;
+              default_theme = "dark";
+            };
             #permittedInsecurePackages = [
             #  "nix-2.15.3"
             #];
