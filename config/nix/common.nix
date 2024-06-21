@@ -62,6 +62,14 @@
 
     #llm
     pkgs.ollama
+
+    #network
+    pkgs.whois
+    pkgs.mtr
+    pkgs.dig
+    pkgs.nmap
+    pkgs.tcpdump
+
   ];
 
 }
