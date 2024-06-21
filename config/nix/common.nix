@@ -51,6 +51,10 @@
     pkgs.nil
     pkgs.vscode-langservers-extracted
 
+    #python
+    pkgs.pyenv
+    pkgs.python3
+    
     #other packages
     pkgs.terraform
     pkgs.kind

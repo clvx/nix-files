@@ -66,9 +66,12 @@
         nvim-dap-go
         nvim-dap-ui
 
+        ##python
+
         #treesitter
         nvim-treesitter
         nvim-treesitter-parsers.go
+        nvim-treesitter-parsers.python
         nvim-treesitter-parsers.jq
         nvim-treesitter-parsers.html
         nvim-treesitter-parsers.lua
@@ -78,10 +81,6 @@
         nvim-treesitter-parsers.hcl
         nvim-treesitter-parsers.cue
         nvim-treesitter-parsers.css
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.yaml
     ];
   };
