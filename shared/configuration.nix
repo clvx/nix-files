@@ -33,8 +33,10 @@ in {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    layout = "us";
-    xkbVariant = "altgr-intl";
+    xkb = {
+      variant = "altgr-intl";
+      layout = "us";
+    };
   };
 
   #Sound
