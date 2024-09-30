@@ -34,6 +34,11 @@ After installing, execute:
     nix run . switch -- --flake .#<flake>
     ```
 
+4. Upgrade
+    
+    Update the nixpkgs and home-manager versions to the latest NixOS version and 
+    run update.
+
 ## TODOs
 
 
