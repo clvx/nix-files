@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -16,9 +16,11 @@
       luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
+      luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
+      luafile $HOME/nix-files/config/nvim/plugins/noice-nvim.lua
     '';
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs-unstable.vimPlugins; [
         vim-nix
         vim-cue
 
@@ -36,15 +38,19 @@
         lualine-nvim
         toggleterm-nvim
         which-key-nvim
+        noice-nvim
 
         #fuzzy finder
         fzf-lua
 
         #git
         gitsigns-nvim
+        git-blame-nvim
+        vim-fugitive
 
         #lsp
         nvim-lspconfig
+        lspsaga-nvim
 
         #completion
         nvim-cmp
@@ -57,29 +63,29 @@
         lspkind-nvim
 
         ##go
-        vim-go
-        #go-nvim
+        #vim-go
+        go-nvim
         nvim-dap
         nvim-dap-go
         nvim-dap-ui
 
+        ##python
+
         #treesitter
         nvim-treesitter
-        nvim-treesitter-parsers.go
-        nvim-treesitter-parsers.jq
-        nvim-treesitter-parsers.html
-        nvim-treesitter-parsers.lua
-        nvim-treesitter-parsers.vim
-        nvim-treesitter-parsers.sql
-        nvim-treesitter-parsers.ini
-        nvim-treesitter-parsers.hcl
-        nvim-treesitter-parsers.cue
-        nvim-treesitter-parsers.css
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.yaml
+        nvim-treesitter.withAllGrammars
+        nvim-treesitter-textobjects
+        nvim-treesitter-context
+        #custom plugins
+        (pkgs-unstable.vimUtils.buildVimPlugin {
+          name = "guihua";
+          src = pkgs.fetchFromGitHub {
+            owner = "ray-x";
+            repo = "guihua.lua";
+            rev = "225db770e36aae6a1e9e3a65578095c8eb4038d3"; # or whatever branch you want to build
+            hash = "sha256-V5rlORFlhgjAT0n+LcpMNdY+rEqQpur/KGTGH6uFxMY=";
+          };
+        })
     ];
   };
 

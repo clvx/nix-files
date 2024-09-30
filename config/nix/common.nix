@@ -2,7 +2,7 @@
 {
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.sessionVariables = {
     SHELL = "zsh";
     EDITOR = "nvim";
@@ -23,6 +23,8 @@
     pkgs.bat
     pkgs.z-lua
     pkgs.hey
+    pkgs.gnumake
+    pkgs.wget
 
     #prompt
     pkgs.starship
@@ -47,16 +49,29 @@
     #language servers
     pkgs.gopls
     pkgs.pyright
-    pkgs.sumneko-lua-language-server
-    pkgs.rnix-lsp
+    pkgs.lua-language-server
+    pkgs.nil
     pkgs.vscode-langservers-extracted
 
+    #python
+    pkgs.pyenv
+    pkgs.python3
+    
     #other packages
-    pkgs.terraform
     pkgs.kind
     pkgs.kubectl
     pkgs.kubeswitch
     pkgs.direnv
+
+    pkgs.vagrant
+
+    #network
+    pkgs.whois
+    pkgs.mtr
+    pkgs.dig
+    pkgs.nmap
+    pkgs.tcpdump
+
   ];
 
 }

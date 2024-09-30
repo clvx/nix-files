@@ -93,8 +93,6 @@ opt.listchars = {eol = '¬', tab = '▸ '}
 opt.backspace = {'eol','start','indent'}
 opt.whichwrap = opt.whichwrap + '<,>,h,l'
 
--- Add :GoInfo by default - vim-go
-g.go_auto_type_info = 1
 
 vim.cmd [[
     set nobackup

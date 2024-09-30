@@ -41,12 +41,24 @@ require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['tsserver'].setup{
+require('lspconfig')['ts_ls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.rnix.setup{}
+require'lspconfig'.gopls.setup{
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      completeUnimported = true,
+      usePlaceholders = true,
+    },
+  },
+  filetypes = {"go", "gomod", "gowork", "gotmpl"},
+}
+require'lspconfig'.nil_ls.setup{}
 
 --enabling html
 --Enable (broadcasting) snippet capability for completion

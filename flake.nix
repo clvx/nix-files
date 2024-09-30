@@ -1,28 +1,84 @@
 {
-  description = "My Home Manager Flake";
+  description = "NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "nixpkgs/master";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-    outputs = {nixpkgs, home-manager, ...}: {
-        defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-        defaultPackage.x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
-        defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-
-        homeConfigurations = {
-            "void" = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.x86_64-linux;
-                modules = [ ./hosts/void/default.nix ];
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  let
+    mkHost = hostName: system:
+      nixpkgs.lib.nixosSystem {
+        #Had no f*cking idea you could just pass pkgs in this code block
+        pkgs = import nixpkgs {
+          inherit system;
+          # settings to nixpkgs goes to here
+          config = {
+            allowUnfree = true;
+            #matrix
+            element-web.conf = {
+              show_labs_settings = true;
+              default_theme = "dark";
             };
-            "abyss" = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-                modules = [ ./hosts/abyss/default.nix ];
-            };
+            #permittedInsecurePackages = [
+            #  "nix-2.15.3"
+            #];
+          };
         };
+
+        specialArgs = {
+          # By default, the system will only use packages from the
+          # stable channel.  You can selectively install packages
+          # from the unstable channel.  You can also add more
+          # channels to pin package version.
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            # settings to nixpkgs-unstable goes to here
+            config = {
+              allowUnfree = true;
+            };
+          };
+
+         # make all inputs and system availabe in other nix files
+         inherit inputs;
+         inherit system;
+        };
+
+        modules = [
+          # Root on ZFS related configuration
+          #./modules
+
+          # Configuration shared by all hosts
+          ./shared/configuration.nix
+
+          # Configuration per host
+          # Specific host configuration can be overloaded in each hostname directory.
+          ./hosts/${hostName}
+
+          # home-manager
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users = {
+                clvx = ./config/nix/home.nix;
+                # add more user configurations here.
+              };
+              extraSpecialArgs = { pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; }; };
+	        };
+          }
+        ];
+      };
+  in {
+    nixosConfigurations = {
+      rift = mkHost "rift" "x86_64-linux";
+      void = mkHost "void" "x86_64-linux";
     };
+  };
 }
