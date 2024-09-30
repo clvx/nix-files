@@ -110,7 +110,6 @@ in {
     gnome-tour
   ]) ++ (with pkgs.gnome; [
     gnome-music
-    gedit # text editor
     epiphany # web browser
     geary # email reader
     totem # video player
