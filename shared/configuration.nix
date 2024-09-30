@@ -56,6 +56,7 @@ in {
       "networkmanager" 
       "wheel"
       "libvirtd"
+      "docker"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -189,6 +190,10 @@ in {
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
+    };
+
+    docker = {
+      enable = true;
     };
   };
 }
