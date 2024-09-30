@@ -44,8 +44,9 @@
             };
           };
 
-         # make all inputs availabe in other nix files
+         # make all inputs and system availabe in other nix files
          inherit inputs;
+         inherit system;
         };
 
         modules = [
@@ -63,13 +64,14 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-	      useGlobalPkgs = true;
+              useGlobalPkgs = true;
               useUserPackages = true;
               users = {
                 clvx = ./config/nix/home.nix;
                 # add more user configurations here.
               };
-	    };
+              extraSpecialArgs = { pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; }; };
+	        };
           }
         ];
       };
