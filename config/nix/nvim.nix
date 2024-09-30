@@ -17,6 +17,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
       luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
+      luafile $HOME/nix-files/config/nvim/plugins/noice-nvim.lua
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -37,6 +38,7 @@
         lualine-nvim
         toggleterm-nvim
         which-key-nvim
+        noice-nvim
 
         #fuzzy finder
         fzf-lua
