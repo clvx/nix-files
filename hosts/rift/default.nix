@@ -9,7 +9,7 @@
       # (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  #TODO: this boot options need to be updated
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -19,21 +19,8 @@
   networking.hostName = "rift";
   #networking.networkmanager.enable = true;
 
+  # Set your time zone.
   time.timeZone = "America/Denver";
-
-  #ZFS configs
-  networking.hostId = "810dc719";
-
-  ## enable ZFS auto snapshot on datasets
-  ## You need to set the auto snapshot property to "true"
-  ## on datasets for this to work, such as
-  # zfs set com.sun:auto-snapshot=true rpool/nixos/home
-  services.zfs = {
-    autoSnapshot = {
-      enable = false; flags = "-k -p --utc";
-      monthly = 48;
-    };
-  };
 
 
 }
