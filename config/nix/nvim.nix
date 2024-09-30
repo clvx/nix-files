@@ -75,6 +75,16 @@
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
         nvim-treesitter-context
+        #custom plugins
+        (pkgs-unstable.vimUtils.buildVimPlugin {
+          name = "guihua";
+          src = pkgs.fetchFromGitHub {
+            owner = "ray-x";
+            repo = "guihua.lua";
+            rev = "225db770e36aae6a1e9e3a65578095c8eb4038d3"; # or whatever branch you want to build
+            hash = "sha256-V5rlORFlhgjAT0n+LcpMNdY+rEqQpur/KGTGH6uFxMY=";
+          };
+        })
     ];
   };
 

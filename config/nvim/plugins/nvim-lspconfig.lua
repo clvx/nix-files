@@ -41,7 +41,7 @@ require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['tsserver'].setup{
+require('lspconfig')['ts_ls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
@@ -52,8 +52,11 @@ require'lspconfig'.gopls.setup{
       analyses = {
         unusedparams = true,
       },
+      completeUnimported = true,
+      usePlaceholders = true,
     },
   },
+  filetypes = {"go", "gomod", "gowork", "gotmpl"},
 }
 require'lspconfig'.nil_ls.setup{}
 
