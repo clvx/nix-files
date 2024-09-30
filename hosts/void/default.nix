@@ -1,9 +1,10 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, pkgs-unstable, modulesPath, ... }:
 {
  # import preconfigured profiles
  imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./networking.nix
       (modulesPath + "/installer/scan/not-detected.nix")
       # (modulesPath + "/profiles/hardened.nix")
       # (modulesPath + "/profiles/qemu-guest.nix")
@@ -14,29 +15,40 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   #This is good
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-
-  networking.hostName = "void";
-  networking.firewall = {
-    allowedTCPPorts = [ 
-      11434  #ollama
-    ];
-  };
-  #networking.networkmanager.enable = true;
+  boot.initrd.availableKernelModules = [ 
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+    #used by cilium
+    "ip6table_mangle"
+    "ip6table_raw"
+  ];
 
   time.timeZone = "America/Denver";
 
-  #ZFS configs
-  networking.hostId = "810dc719";
+  programs = {
+    steam.enable = true;
+  };
 
-  ## enable ZFS auto snapshot on datasets
-  ## You need to set the auto snapshot property to "true"
-  ## on datasets for this to work, such as
-  # zfs set com.sun:auto-snapshot=true rpool/nixos/home
-  services.zfs = {
-    autoSnapshot = {
-      enable = false; flags = "-k -p --utc";
-      monthly = 48;
+
+  services = {
+    ## enable ZFS auto snapshot on datasets
+    ## You need to set the auto snapshot property to "true"
+    ## on datasets for this to work, such as
+    # zfs set com.sun:auto-snapshot=true rpool/nixos/home
+    zfs = {
+      autoSnapshot = {
+        enable = false; flags = "-k -p --utc";
+        monthly = 48;
+      };
+    };
+    #LLM - https://wiki.nixos.org/wiki/Ollama
+    ollama = {
+      package = pkgs-unstable.ollama;
+      enable = true;
     };
   };
 }
