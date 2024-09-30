@@ -70,6 +70,7 @@ in {
       slack
       nextcloud-client
       wl-clipboard
+      virt-viewer
     ];
     initialPassword = "noadmin";
   };
@@ -147,9 +148,9 @@ in {
       viAlias = true;
       vimAlias = true;
     };
+    virt-manager.enable = true;
     git.enable = true;
     zsh.enable = true;
-    steam.enable = false;
   };
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -187,8 +188,10 @@ in {
       qemu = {
         package = pkgs.qemu_kvm; #only emulates host arch, smaller download
         swtpm.enable = true; # allows for creating emulated tpm
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        ovmf = { 
+          enable = true;
+          packages = [ pkgs.OVMFFull.fd ];
+        };
       };
     };
 
