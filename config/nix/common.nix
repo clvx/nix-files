@@ -23,6 +23,8 @@
     pkgs.bat
     pkgs.z-lua
     pkgs.hey
+    pkgs.gnumake
+    pkgs.wget
 
     #prompt
     pkgs.starship
@@ -47,7 +49,7 @@
     #language servers
     pkgs.gopls
     pkgs.pyright
-    pkgs.sumneko-lua-language-server
+    pkgs.lua-language-server
     pkgs.nil
     pkgs.vscode-langservers-extracted
 
@@ -56,16 +58,12 @@
     pkgs.python3
     
     #other packages
-    pkgs.terraform
     pkgs.kind
     pkgs.kubectl
     pkgs.kubeswitch
     pkgs.direnv
 
     pkgs.vagrant
-
-    #llm
-    pkgs.ollama
 
     #network
     pkgs.whois
