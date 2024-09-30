@@ -62,6 +62,7 @@
     pkgs.kubectl
     pkgs.kubeswitch
     pkgs.direnv
+    pkgs.gh
 
     pkgs.vagrant
 
