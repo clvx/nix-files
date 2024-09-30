@@ -20,7 +20,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/noice-nvim.lua
     '';
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs-unstable.vimPlugins; [
         vim-nix
         vim-cue
 
