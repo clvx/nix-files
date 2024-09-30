@@ -50,6 +50,7 @@
 
         #lsp
         nvim-lspconfig
+        lspsaga-nvim
 
         #completion
         nvim-cmp
