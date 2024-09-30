@@ -8,13 +8,7 @@ void() {
 
 #Executing abyss flake
 rift() {
-    nixos-rebuild switch --flake .#abyss
-    #exec $SHELL -l
-}
-
-#Executing abyss flake
-abyss() {
-    nixos-rebuild switch --flake .#abyss
+    nixos-rebuild switch --flake .#rift
     #exec $SHELL -l
 }
 
