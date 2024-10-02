@@ -73,9 +73,8 @@ local opts = { noremap=true, silent=true }
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-CUSTOM_KEYMAP.on_attach = function(client, bufnr)
+CUSTOM_KEYMAP.on_attach = function(bufnr)
 --package.preload.on_attach_keymaps = function(bufnr)
-    
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
