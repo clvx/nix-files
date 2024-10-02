@@ -3,6 +3,7 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    #package = pkgs-unstable.neovim;
     extraConfig = ''
       source  $HOME/nix-files/config/nvim/settings/basics.vim
       luafile $HOME/nix-files/config/nvim/settings/basics.lua

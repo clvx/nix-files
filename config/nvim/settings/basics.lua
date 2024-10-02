@@ -1,12 +1,3 @@
--- key mapping function
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 --
 local opt = vim.opt
 local g = vim.g
@@ -125,17 +116,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
     command = 'highlight ColorColumn ctermbg=16'
 })
 
-
--- search for selected word in visual mode
---vim.keymap.set('v', '//', 'y/\V<C-R>=escape(@",'/\')<CR><CR>', {
---    noremap = true,
---    desc = 'search for selected words in visual mode'
---}) 
-
 vim.cmd([[
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 ]])
-
-
-
-
