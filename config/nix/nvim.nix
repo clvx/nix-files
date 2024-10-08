@@ -63,7 +63,6 @@
         cmp-cmdline
         luasnip
         cmp_luasnip
-        cmp-ai
 
         ##go
         #vim-go
