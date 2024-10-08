@@ -54,14 +54,16 @@
         lspsaga-nvim
 
         #completion
+        plenary-nvim
         nvim-cmp
         cmp-buffer
         cmp-path
         cmp-nvim-lua
         cmp-nvim-lsp
+        cmp-cmdline
         luasnip
         cmp_luasnip
-        lspkind-nvim
+        cmp-ai
 
         ##go
         #vim-go
