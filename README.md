@@ -42,8 +42,6 @@ After installing, execute:
 
 [ ] Configure luasnip.
 
-[ ] Configure cmp_ai to use ollama.
-
 
 ### NVIM
 
