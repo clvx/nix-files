@@ -40,23 +40,16 @@ After installing, execute:
 
 ## TODOs
 
+[ ] Configure luasnip.
+
+[ ] Configure cmp_ai to use ollama.
+
 
 ### NVIM
 
-[ ] Not very happy with nix-cmp. It requires work to give it the same UX as coc.vim.
-
-[ ] tab support
-
-[ ] selecting item
-
-[ ] https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
-
-[ ] https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
 [ ] Fix nvim-tree opening new buffer instead of replacing it.
 
-[ ] https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
-
- [ ] Lacking tags - heirline.nvim could be useful for this.
+[ ] Lacking tags - heirline.nvim could be useful for this.
 
 [ ] https://neovim.io/doc/user/lua.html

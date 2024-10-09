@@ -63,6 +63,8 @@
         cmp-cmdline
         luasnip
         cmp_luasnip
+        copilot-vim
+
 
         ##go
         #vim-go
