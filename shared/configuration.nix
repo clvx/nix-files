@@ -200,11 +200,6 @@ in {
 
     docker = {
       enable = true;
-      daemon = {
-        settings = {
-          ipv6 = true;
-        };
-      };
     };
   };
 }
