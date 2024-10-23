@@ -73,6 +73,8 @@ in {
       nextcloud-client
       wl-clipboard
       virt-viewer
+      shotwell
+      devbox
     ];
     initialPassword = "noadmin";
   };
