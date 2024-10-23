@@ -50,5 +50,10 @@
       package = pkgs-unstable.ollama;
       enable = true;
     };
+    #https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/open-webui.nix
+    open-webui = {
+      enable = true;
+      port = 1984;
+    };
   };
 }
