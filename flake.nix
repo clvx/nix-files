@@ -25,9 +25,6 @@
               show_labs_settings = true;
               default_theme = "dark";
             };
-            #permittedInsecurePackages = [
-            #  "nix-2.15.3"
-            #];
           };
         };
 
@@ -45,8 +42,8 @@
           };
 
          # make all inputs and system availabe in other nix files
-         inherit inputs;
-         inherit system;
+         # https://discourse.nixos.org/t/how-to-pass-variables-to-a-module-defined-in-a-flake-nix-file/33125/2
+         inherit inputs system self;
         };
 
         modules = [

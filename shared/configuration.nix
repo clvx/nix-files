@@ -7,8 +7,9 @@
 # - Boot options could vary as some hosts and cloud based deployments might not use zfs. Maybe push the filesystem options per host on in modules.
 # - gui settings should be a module as cloud based deployments might not use a GUI. Same with sound and vm's.
 
-{ pkgs, pkgs-unstable, inputs, ... }:
-let inherit (inputs) self;
+{self, pkgs, pkgs-unstable, inputs, config, ... }:
+let 
+  inherit inputs;
 in {
 
   #Networking
@@ -203,4 +204,8 @@ in {
       enable = true;
     };
   };
+
+  # Defines the system NixOs generation message with the flake commit used to build 
+  # the system even if tree is dirty.
+  system.nixos.label = (builtins.concatStringsSep "-" (builtins.sort (x: y: x < y) config.system.nixos.tags)) + config.system.nixos.version + builtins.toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
 }
