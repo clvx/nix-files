@@ -75,7 +75,6 @@ in {
       wl-clipboard
       virt-viewer
       shotwell
-      devbox
       vlc
     ];
     initialPassword = "noadmin";
