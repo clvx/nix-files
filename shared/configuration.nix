@@ -207,5 +207,5 @@ in {
 
   # Defines the system NixOs generation message with the flake commit used to build 
   # the system even if tree is dirty.
-  system.nixos.label = (builtins.concatStringsSep "-" (builtins.sort (x: y: x < y) config.system.nixos.tags)) + config.system.nixos.version + builtins.toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
+  system.nixos.label = (builtins.concatStringsSep "-" (builtins.sort (x: y: x < y) config.system.nixos.tags)) + config.system.nixos.version + "-" + builtins.toString (self.shortRev or self.dirtyShortRev or "unknown");
 }
