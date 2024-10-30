@@ -40,8 +40,8 @@ in {
     };
   };
 
-  #Sound
-  sound.enable = true;
+  #Audio
+  #Removing alsa and pulseaudio to use pipewire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
