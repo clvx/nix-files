@@ -46,6 +46,11 @@ opt.shortmess = "atI"
 -- highlight color column
 opt.colorcolumn = {'80', '120'}
 
+-- folding
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+opt.foldlevelstart = 99
+
 -- busquedas insensibles a minusculas y mayusculas
 opt.ignorecase = true
 opt.smartcase = true
