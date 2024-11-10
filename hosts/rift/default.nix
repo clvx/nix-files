@@ -22,5 +22,24 @@
   # Set your time zone.
   time.timeZone = "America/Denver";
 
+  #nix = {
+  #  settings = {
+  #    substituters = [
+  #      "http://binarycache.bitclvx.com"
+  #      "https://nix-community.cachix.org"
+  #      "https://cache.nixos.org/"
+  #    ];
+  #    trusted-public-keys = [
+  #      "binarycache.bitclvx.com:VGscmPOVYLtm4geoKwHWo7KU+ehd5DjhbZBjYw1yips=%"
+  #      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  #    ];
+  #  };
+  #};
 
+  #networking = {
+  #  extraHosts =
+  #  ''
+  #    192.168.0.162 binarycache.bitclvx.com
+  #  '';
+  #};
 }
