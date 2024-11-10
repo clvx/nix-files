@@ -10,7 +10,7 @@ end
 ---------------
 -- nvim-tree --
 ---------------
-map('','<leader>n', ':NvimTreeToggle<CR>')
+map('','<leader>t', ':NvimTreeToggle<CR>')
 
 ---------------
 --- fzf-lua ---
