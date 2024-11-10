@@ -56,6 +56,13 @@ map('','<c-]>','gt')
 ----- close buffer ----
 map('n','<leader>q',':bd<CR>')
 
+-----------------------
+--- Noice fzf-lua ----
+map("n","<leader>nl",":Noice last<CR>")
+map("n","<leader>nf",":Noice files<CR>")
+map("n","<leader>ne",":Noice errors<CR>")
+map("n","<leader>nd",":Noice dismiss<CR>")
+
 -- search for selected word in visual mode
 --vim.keymap.set('v', '//', 'y/\V<C-R>=escape(@",'/\')<CR><CR>', {
 --    noremap = true,

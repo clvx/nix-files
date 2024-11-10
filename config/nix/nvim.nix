@@ -40,6 +40,8 @@
         toggleterm-nvim
         which-key-nvim
         noice-nvim
+        nvim-notify
+        nui-nvim
 
         #fuzzy finder
         fzf-lua
