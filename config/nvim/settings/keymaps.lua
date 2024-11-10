@@ -80,15 +80,15 @@ local opts = { noremap=true, silent=true }
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-CUSTOM_KEYMAP.on_attach = function(bufnr)
---package.preload.on_attach_keymaps = function(bufnr)
+CUSTOM_KEYMAP.on_attach = function()
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  local current_buf = vim.fn.bufnr()
+  vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = current_buf } )
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=true, buffer=current_buf }
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
