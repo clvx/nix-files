@@ -30,21 +30,30 @@
     pkgs.starship
 
     #programming languages
+    ##go
     pkgs.go
-    pkgs.mockgen
     pkgs.golangci-lint
     pkgs.gotools
     pkgs.govulncheck
     pkgs.gomodifytags
     pkgs.gotests
-    pkgs.iferr
-    pkgs.impl
-    pkgs.reftools
-    pkgs.delve
     pkgs.richgo
     pkgs.gofumpt
     pkgs.gotestsum
     pkgs.golines
+    ##python
+    pkgs.pyenv
+    pkgs.python3
+    ##rust-analyzer
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.rustfmt
+    ##others
+    pkgs.mockgen
+    pkgs.iferr
+    pkgs.impl
+    pkgs.reftools
+    pkgs.delve
 
     #language servers
     pkgs.gopls
@@ -54,9 +63,6 @@
     pkgs.vscode-langservers-extracted
     pkgs.rust-analyzer
 
-    #python
-    pkgs.pyenv
-    pkgs.python3
     
     #other packages
     pkgs.kind
