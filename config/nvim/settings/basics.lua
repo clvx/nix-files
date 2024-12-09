@@ -48,8 +48,15 @@ opt.colorcolumn = {'80', '120'}
 
 -- folding
 opt.foldmethod = 'expr'
+-- https://www.reddit.com/r/neovim/comments/1h34lr4/neovim_now_has_the_builtin_lsp_folding_support/, 
+-- not available until 10.0.3
+-- opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldlevelstart = 99
+opt.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
+opt.foldcolumn = '1'
+opt.foldenable = true
+opt.foldlevel = 99
 
 -- busquedas insensibles a minusculas y mayusculas
 opt.ignorecase = true

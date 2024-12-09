@@ -7,6 +7,16 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+
+------------------
+-- cool keymaps --
+------------------
+-- https://www.reddit.com/r/neovim/comments/1h7f0bz/share_your_coolest_keymap/
+-- Duplicate a line and comment out the first line
+map('n', 'yc', 'yy<cmd>normal gcc<CR>p')
+-- Ctrl-C to change inner word
+map("n", "<C-c>", "ciw")
+
 ---------------
 -- nvim-tree --
 ---------------
