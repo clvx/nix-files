@@ -37,6 +37,15 @@ require'lspconfig'.html.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+require'lspconfig'.rust_analyzer.setup{
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
+    }
+  }
+}
 
 
 require'lspconfig'.lua_ls.setup {

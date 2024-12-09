@@ -52,6 +52,7 @@
     pkgs.lua-language-server
     pkgs.nil
     pkgs.vscode-langservers-extracted
+    pkgs.rust-analyzer
 
     #python
     pkgs.pyenv

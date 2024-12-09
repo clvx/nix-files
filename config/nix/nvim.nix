@@ -77,6 +77,10 @@
 
         ##python
 
+        ##rust
+        ### rust configuration https://www.youtube.com/watch?v=E2mKJ73M9pg
+        rustaceanvim
+
         #treesitter
         nvim-treesitter
         nvim-treesitter.withAllGrammars
