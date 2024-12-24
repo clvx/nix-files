@@ -37,16 +37,32 @@ require'lspconfig'.html.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
-require'lspconfig'.rust_analyzer.setup{
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = false;
-      }
-    }
-  }
-}
 
+local rust_on_attach = function(client, bufnr)
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+require'lspconfig'.rust_analyzer.setup({
+    on_attach = rust_on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 
 require'lspconfig'.lua_ls.setup {
   on_attach = on_attach,
