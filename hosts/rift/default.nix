@@ -36,10 +36,11 @@
   #  };
   #};
 
-  #networking = {
-  #  extraHosts =
-  #  ''
-  #    192.168.0.162 binarycache.bitclvx.com
-  #  '';
-  #};
+  networking = {
+    extraHosts =
+    ''
+      192.168.88.254 binarycache.bitclvx.com
+      192.168.1.1 www.routerlogin.net
+    '';
+  };
 }
