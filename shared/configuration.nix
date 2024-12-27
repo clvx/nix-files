@@ -111,7 +111,7 @@ in {
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
-  ]) ++ (with pkgs.gnome; [
+  ]) ++ (with pkgs; [
     gnome-music
     epiphany # web browser
     geary # email reader
@@ -125,7 +125,7 @@ in {
   # Also, a custom package can be built and pass as a single package: 
   # https://nixos.org/manual/nixos/stable/#sec-custom-packages
   services.udev.packages = with pkgs; [ 
-    gnome.gnome-settings-daemon 
+    gnome-settings-daemon 
   ];
   #nixpkgs.confeg.firefx.enableGnomeExtensions = true;
   services.gnome.gnome-browser-connector.enable = true;
