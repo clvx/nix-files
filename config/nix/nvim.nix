@@ -88,15 +88,15 @@
         nvim-treesitter-textobjects
         nvim-treesitter-context
         #custom plugins
-        (pkgs-unstable.vimUtils.buildVimPlugin {
-          name = "guihua";
-          src = pkgs.fetchFromGitHub {
-            owner = "ray-x";
-            repo = "guihua.lua";
-            rev = "225db770e36aae6a1e9e3a65578095c8eb4038d3"; # or whatever branch you want to build
-            hash = "sha256-V5rlORFlhgjAT0n+LcpMNdY+rEqQpur/KGTGH6uFxMY=";
-          };
-        })
+        #(pkgs-unstable.vimUtils.buildVimPlugin {
+        #  name = "guihua";
+        #  src = pkgs.fetchFromGitHub {
+        #    owner = "ray-x";
+        #    repo = "guihua.lua";
+        #    rev = "d783191eaa75215beae0c80319fcce5e6b3beeda"; # or whatever branch you want to build
+        #    hash = "sha256-XpUsbj1boDfbyE8C6SdOvZdkd97682VVC81fvQ5WA/4=";
+        #  };
+        #})
     ];
   };
 
