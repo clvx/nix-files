@@ -86,4 +86,10 @@
 
   ];
 
+  home.file."ghostty" = {
+    recursive = true;
+    source = ../ghostty/config;
+    target = ".config/ghostty/config";
+  };
+
 }
