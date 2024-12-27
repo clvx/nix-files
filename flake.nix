@@ -8,9 +8,12 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = { 
+      url = "github:ghostty-org/ghostty"; 
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ghostty, ... }@inputs:
   let
     mkHost = hostName: system:
       nixpkgs.lib.nixosSystem {
@@ -68,7 +71,16 @@
                 clvx = ./config/nix/home.nix;
                 # add more user configurations here.
               };
-              extraSpecialArgs = { pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; }; };
+              extraSpecialArgs = { 
+                inherit inputs system self nixpkgs-unstable;
+                pkgs-unstable = import nixpkgs-unstable { 
+                  inherit system; 
+                  config.allowUnfree = true; 
+                }; 
+                ghostty = import ghostty { 
+                  inherit system; 
+                };
+              };
 	        };
           }
         ];

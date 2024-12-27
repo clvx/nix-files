@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   programs.home-manager.enable = true;
 
@@ -79,6 +79,10 @@
     pkgs.dig
     pkgs.nmap
     pkgs.tcpdump
+
+    #terminal
+    # why can I use ghostty inside inputs?
+    inputs.ghostty.packages."${pkgs.system}".default
 
   ];
 
