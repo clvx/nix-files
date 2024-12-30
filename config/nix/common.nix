@@ -72,6 +72,7 @@
     pkgs.gh
 
     pkgs.vagrant
+    pkgs.docker-compose
 
     #network
     pkgs.whois

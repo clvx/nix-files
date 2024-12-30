@@ -74,6 +74,16 @@
         nvim-dap
         nvim-dap-go
         nvim-dap-ui
+        #go custom plugins
+        #(pkgs-unstable.vimUtils.buildVimPlugin {
+        #  name = "guihua";
+        #  src = pkgs.fetchFromGitHub {
+        #    owner = "ray-x";
+        #    repo = "guihua.lua";
+        #    rev = "d783191eaa75215beae0c80319fcce5e6b3beeda"; # or whatever branch you want to build
+        #    hash = "sha256-XpUsbj1boDfbyE8C6SdOvZdkd97682VVC81fvQ5WA/4=";
+        #  };
+        #})
 
         ##python
 
@@ -87,16 +97,7 @@
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
         nvim-treesitter-context
-        #custom plugins
-        #(pkgs-unstable.vimUtils.buildVimPlugin {
-        #  name = "guihua";
-        #  src = pkgs.fetchFromGitHub {
-        #    owner = "ray-x";
-        #    repo = "guihua.lua";
-        #    rev = "d783191eaa75215beae0c80319fcce5e6b3beeda"; # or whatever branch you want to build
-        #    hash = "sha256-XpUsbj1boDfbyE8C6SdOvZdkd97682VVC81fvQ5WA/4=";
-        #  };
-        #})
+        
     ];
   };
 
