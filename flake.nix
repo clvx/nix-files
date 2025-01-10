@@ -23,12 +23,6 @@
           # settings to nixpkgs goes to here
           config = {
             allowUnfree = true;
-            ## disabling matrix override as it triggers a rebuild which makes it 
-            ## very slow to evaluate.
-            #element-web.conf = {
-            #  show_labs_settings = true;
-            #  default_theme = "dark";
-            #};
           };
         };
 
