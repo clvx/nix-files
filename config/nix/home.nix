@@ -8,6 +8,7 @@
     ./tmux.nix
     ./zsh.nix
     ./git.nix
+    ./wezterm.nix
   ];
 
 }
