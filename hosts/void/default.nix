@@ -50,10 +50,21 @@
       package = pkgs-unstable.ollama;
       enable = true;
     };
-    #https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/open-webui.nix
-    open-webui = {
-      enable = true;
-      port = 1984;
+    # NixOs binary cache configuration
+    #https://nixos.wiki/wiki/Binary_Cache
+    nix-serve = {
+      enable = false;
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
+    nginx = {
+      enable = false;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        # ... existing hosts config etc. ...
+        "binarycache.bitclvx.com" = {
+          locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+        };
+      };
     };
   };
 }
