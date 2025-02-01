@@ -77,6 +77,7 @@ in {
       shotwell
       vlc
       discord
+      openssl
     ];
     initialPassword = "noadmin";
   };
