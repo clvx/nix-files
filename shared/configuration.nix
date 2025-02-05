@@ -109,6 +109,11 @@ in {
     pkgs-unstable.obsidian
   ];
 
+  environment.variables = {
+    XCURSOR_THEME = "Adwaita";
+    XCURSOR_SIZE = "24";
+  };
+
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ (with pkgs; [
