@@ -131,3 +131,12 @@ vim.api.nvim_create_autocmd('VimEnter', {
 vim.cmd([[
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 ]])
+
+-- forcing undercurl
+vim.cmd [[
+  highlight DiagnosticUnderlineError gui=undercurl guisp=Red
+  highlight DiagnosticUnderlineWarn gui=undercurl guisp=Yellow
+  highlight DiagnosticUnderlineHint gui=undercurl guisp=Blue
+  highlight DiagnosticUnderlineInfo gui=undercurl guisp=Green
+]]
+
