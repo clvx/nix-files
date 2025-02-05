@@ -44,10 +44,12 @@
     ##python
     pkgs.pyenv
     pkgs.python3
+    pkgs.uv
     ##rust-analyzer
     pkgs.rustc
     pkgs.cargo
     pkgs.rustfmt
+    pkgs.clippy
     ##others
     pkgs.mockgen
     pkgs.iferr
@@ -58,6 +60,7 @@
     #language servers
     pkgs.gopls
     pkgs.pyright
+    pkgs.ruff
     pkgs.lua-language-server
     pkgs.nil
     pkgs.vscode-langservers-extracted
