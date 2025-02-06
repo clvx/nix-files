@@ -60,6 +60,7 @@ in {
       "wheel"
       "libvirtd"
       "docker"
+      "lxd"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -206,6 +207,10 @@ in {
 
     docker = {
       enable = true;
+    };
+
+    lxd = {
+      enable = false;
     };
   };
 
