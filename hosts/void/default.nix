@@ -48,8 +48,22 @@
     #LLM - https://wiki.nixos.org/wiki/Ollama
     ollama = {
       package = pkgs-unstable.ollama;
-      enable = true;
+      enable = false;
     };
+    k3s = {
+      enable = true;
+      role = "server";
+      extraFlags = toString[
+        #cilium configuration
+        # https://docs.k3s.io/networking/networking-services
+        "--flannel-backend=none" #cilium cni
+        "--disable-network-policy" #cilium network policy
+        "--disable=traefik" #cilium ingress
+        "--disable=servicelb" #so metallb or l2 announcement can be used
+        "--disable-kube-proxy" #using ebpf instead
+     ];
+    };
+
     # NixOs binary cache configuration
     #https://nixos.wiki/wiki/Binary_Cache
     nix-serve = {
