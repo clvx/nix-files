@@ -108,6 +108,14 @@ in {
     pkgs.libreoffice-qt
     pkgs-unstable.gnomeExtensions.vitals
     pkgs-unstable.obsidian
+    pkgs-unstable.obs-studio
+    (pkgs-unstable.wrapOBS {
+    plugins = with pkgs-unstable.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      ];
+    })
   ];
 
   environment.variables = {
