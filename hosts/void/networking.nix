@@ -6,6 +6,7 @@
     extraHosts =
     ''
       127.0.0.1 binarycache.bitclvx.com
+      127.0.0.1 nc.bitclvx.com
     '';
     firewall = {
       allowedTCPPorts = [ 

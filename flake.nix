@@ -8,9 +8,16 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # optional, not necessary for the module
+    # optionally choose not to download darwin deps (saves some resources on Linux)
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, agenix, ... }@inputs:
   let
     mkHost = hostName: system:
       nixpkgs.lib.nixosSystem {
@@ -44,6 +51,8 @@
         modules = [
           # Root on ZFS related configuration
           #./modules
+
+          agenix.nixosModules.default
 
           # Configuration shared by all hosts
           ./shared/configuration.nix
