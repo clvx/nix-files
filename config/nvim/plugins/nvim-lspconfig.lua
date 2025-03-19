@@ -83,37 +83,37 @@ require'lspconfig'.html.setup {
   on_attach = on_attach,
 }
 
-local rust_on_attach = function(client, bufnr)
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-    end
-
-require'lspconfig'.rust_analyzer.setup({
-    on_attach = rust_on_attach,
-    settings = {
-        ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-            diagnostics = {
-                enable = true,
-            },
-            check = {
-                command = "clippy",
-            },
-        }
-    }
-})
+--local rust_on_attach = function(client, bufnr)
+--        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+--    end
+--
+--require'lspconfig'.rust_analyzer.setup({
+--    on_attach = rust_on_attach,
+--    settings = {
+--        ["rust-analyzer"] = {
+--            imports = {
+--                granularity = {
+--                    group = "module",
+--                },
+--                prefix = "self",
+--            },
+--            cargo = {
+--                buildScripts = {
+--                    enable = true,
+--                },
+--            },
+--            procMacro = {
+--                enable = true
+--            },
+--            diagnostics = {
+--                enable = true,
+--            },
+--            check = {
+--                command = "clippy",
+--            },
+--        }
+--    }
+--})
 
 require'lspconfig'.lua_ls.setup {
   on_attach = on_attach,

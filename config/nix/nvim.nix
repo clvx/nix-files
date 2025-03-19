@@ -90,6 +90,7 @@
         ##rust
         ### https://www.youtube.com/watch?v=E2mKJ73M9pg
         ### https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/
+        rustaceanvim
 
 
         #treesitter
