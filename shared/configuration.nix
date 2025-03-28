@@ -106,6 +106,8 @@ in {
     pkgs.gnomeExtensions.dash-to-dock
     pkgs.gnomeExtensions.appindicator
     pkgs.libreoffice-qt
+    pkgs.dupeguru
+    pkgs.localsend
     pkgs-unstable.gnomeExtensions.vitals
     pkgs-unstable.obsidian
     pkgs-unstable.obs-studio
