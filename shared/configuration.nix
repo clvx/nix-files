@@ -79,6 +79,7 @@ in {
       vlc
       discord
       openssl
+      hydrapaper
     ];
     initialPassword = "noadmin";
   };

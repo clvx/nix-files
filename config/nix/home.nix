@@ -9,6 +9,7 @@
     ./zsh.nix
     ./git.nix
     ./wezterm.nix
+    ./vscode.nix
   ];
 
 }

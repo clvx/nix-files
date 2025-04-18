@@ -19,6 +19,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
       luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
       luafile $HOME/nix-files/config/nvim/plugins/noice-nvim.lua
+      luafile $HOME/nix-files/config/nvim/plugins/codecompanion-nvim.lua
     '';
 
     plugins = with pkgs-unstable.vimPlugins; [
@@ -65,7 +66,10 @@
         cmp-cmdline
         luasnip
         cmp_luasnip
+
+        #ai
         copilot-vim
+        codecompanion-nvim
 
 
         ##go
