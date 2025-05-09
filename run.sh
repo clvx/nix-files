@@ -1,26 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#Executing void flake
-void() {
-    nixos-rebuild switch --flake .#void $@
-    #exec $SHELL -l
-}
+HOST="$1"
+shift # Remove the first argument (the hostname) from the list of arguments
+CURRENT=$(hostname)
 
-#Executing abyss flake
-rift() {
-    nixos-rebuild switch --flake .#rift $@
-    #exec $SHELL -l
-}
+if [[ "$HOST" != "$CURRENT" ]]; then
+    echo "This script is intended to be run on $HOST, but the current hostname is $CURRENT."
+    exit 1
+fi
 
-# Usage ./run.sh void|abyss
-# check whether user had supplied -h or --help . If yes display usage
-if [[ ( $@ == "--help") ||  $@ == "-h" ]]
-then 
-	echo "Usage: $0 <flake>"
-	exit 0
-fi 
+echo ${HOST}
 
-$1
+nixos-rebuild switch --flake .#${HOST} $@
+
 
 ## adding this at initial setup
 #command -v zsh | sudo tee -a /etc/shells
