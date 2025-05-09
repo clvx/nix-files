@@ -2,13 +2,13 @@
 
 #Executing void flake
 void() {
-    nixos-rebuild switch --flake .#void
+    nixos-rebuild switch --flake .#void $@
     #exec $SHELL -l
 }
 
 #Executing abyss flake
 rift() {
-    nixos-rebuild switch --flake .#rift
+    nixos-rebuild switch --flake .#rift $@
     #exec $SHELL -l
 }
 
