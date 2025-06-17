@@ -159,6 +159,13 @@ in {
       enable = true;
       #settings = { PasswordAuthentication = false; };
     };
+    # avahi is used for mDNS, which is useful for discovering services 
+    # on the local network, such as printers or other devices.
+    avahi = {
+      enable = true;
+      nssmdns4 = true; # enable mDNS for IPv4
+      openFirewall = true; # open firewall for avahi
+    };
   };
   system.stateVersion = "23.11"; # Did you read the comment?
 
