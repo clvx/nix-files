@@ -18,7 +18,7 @@ programs.zsh = {
       noblanks = "sed \"/^$/d\"";
       nohistory = "history | sed \"s/^\s*[0-9]*\s*\(.*\)/\1/\"";
     };
-    initExtra = "
+    initContent = "
 eval \"$(starship init zsh)\"
 eval \"$(direnv hook zsh)\"
 

@@ -33,7 +33,6 @@
     ##go
     pkgs.go
     pkgs.golangci-lint
-    pkgs.gotools
     pkgs.govulncheck
     pkgs.gomodifytags
     pkgs.gotests

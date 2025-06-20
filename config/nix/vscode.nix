@@ -4,13 +4,17 @@
   programs.vscode = {
     enable = true;
     package = pkgs-unstable.vscode;
-    extensions = with pkgs-unstable.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-      yzhang.markdown-all-in-one
-      bbenoist.nix
-      ms-python.python
-      rust-lang.rust-analyzer
-    ];
+    profiles = {
+      default = {
+        extensions = with pkgs-unstable.vscode-extensions; [
+          dracula-theme.theme-dracula
+          vscodevim.vim
+          yzhang.markdown-all-in-one
+          bbenoist.nix
+          ms-python.python
+          rust-lang.rust-analyzer
+        ];
+      };
+    };
   };
 }

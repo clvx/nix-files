@@ -21,7 +21,7 @@
  security = {
    acme = {
      acceptTerms = true;
-     email = "michael.ibarra@gmail.com";
+     defaults.email = "michael.ibarra@gmail.com";
      certs = {
        ${config.services.nextcloud.hostName} = {
          dnsProvider = "gandiv5";
@@ -33,7 +33,6 @@
      };
    };
  };
-
 
   services = {
     ## enable ZFS auto snapshot on datasets

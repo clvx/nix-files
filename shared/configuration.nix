@@ -42,7 +42,7 @@ in {
 
   #Audio
   #Removing alsa and pulseaudio to use pipewire
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -149,7 +149,7 @@ in {
 
   #Fonts
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
+    nerd-fonts.hack
   ];
 
   #System services
