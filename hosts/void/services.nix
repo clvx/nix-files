@@ -101,7 +101,7 @@
       hostName = "nc.bitclvx.com";
 
        # Need to manually increment with every major upgrade.
-      package = pkgs.nextcloud30;
+      package = pkgs.nextcloud31;
 
       # Let NixOS install and configure the database automatically.
       database.createLocally = true;
@@ -137,11 +137,14 @@
 
       #TODO: this needs to be updated
       config = {
-        overwriteProtocol = "https";
-        defaultPhoneRegion = "MT";
         dbtype = "pgsql";
         adminuser = "admin";
         adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
+      };
+      settings = {
+        overwriteprotocol = "https";
+        default_phone_region = "MT";
+        default_timezone = "US/Mountain";
       };
     };
   };

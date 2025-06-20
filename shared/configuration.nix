@@ -225,6 +225,7 @@ in {
 
     docker = {
       enable = true;
+      package = pkgs.docker_28;
     };
 
     lxd = {
