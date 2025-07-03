@@ -86,6 +86,7 @@
     nixosConfigurations = {
       rift = mkHost "rift" "x86_64-linux";
       void = mkHost "void" "x86_64-linux";
+      abyss = mkHost "abyss" "x86_64-linux";
     };
   };
 }
