@@ -39,6 +39,7 @@ in {
       layout = "us";
     };
   };
+  services.displayManager.defaultSession = "gnome"; # forcing graphic target in systemd
 
   #Audio
   #Removing alsa and pulseaudio to use pipewire
