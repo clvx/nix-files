@@ -15,6 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, agenix, ... }@inputs:
@@ -42,7 +43,6 @@
               allowUnfree = true;
             };
           };
-
          # make all inputs and system availabe in other nix files
          # https://discourse.nixos.org/t/how-to-pass-variables-to-a-module-defined-in-a-flake-nix-file/33125/2
          inherit inputs system self;
