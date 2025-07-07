@@ -43,4 +43,6 @@
       192.168.1.1 www.routerlogin.net
     '';
   };
+
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

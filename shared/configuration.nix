@@ -168,7 +168,7 @@ in {
       openFirewall = true; # open firewall for avahi
     };
   };
-  system.stateVersion = "23.11"; # Did you read the comment?
+  #system.stateVersion = "23.11"; # Did you read the comment?
 
   #Default programs
   programs = { 

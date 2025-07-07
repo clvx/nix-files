@@ -41,4 +41,6 @@
 
   # Configure console keymap
   console.keyMap = "us-acentos";
+
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
