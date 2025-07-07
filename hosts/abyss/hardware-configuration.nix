@@ -10,21 +10,22 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f0655bb1-ac12-46cf-a365-225db0215e7c";
+    { device = "/dev/disk/by-uuid/b9b0a1c1-6ec7-4cc8-9a9c-ecbddfe9ed24";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-8ebb149e-1a38-483e-97df-1afcf80bc26e".device = "/dev/disk/by-uuid/8ebb149e-1a38-483e-97df-1afcf80bc26e";
+  boot.initrd.luks.devices."luks-07d49276-20f8-4162-b8fc-5c56099fe59a".device = "/dev/disk/by-uuid/07d49276-20f8-4162-b8fc-5c56099fe59a";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/EB5D-700D";
+    { device = "/dev/disk/by-uuid/5F8A-93D5";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices = [ ];
@@ -34,11 +35,13 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp195s0f0u2.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp195s0f3u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp192s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Updating firmware using https://github.com/NixOS/nixos-hardware/
   services.fwupd.enable = true;
+
 }
