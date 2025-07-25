@@ -62,8 +62,10 @@
     pkgs.ruff
     pkgs.lua-language-server
     pkgs.nil
+    pkgs.nixd
     pkgs.vscode-langservers-extracted
     pkgs.rust-analyzer
+    pkgs.typescript-language-server
 
     
     #other packages

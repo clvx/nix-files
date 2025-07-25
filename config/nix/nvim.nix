@@ -12,8 +12,7 @@
       luafile $HOME/nix-files/config/nvim/plugins/nvim-tree.lua
       luafile $HOME/nix-files/config/nvim/plugins/nvim-treesitter.lua
       luafile $HOME/nix-files/config/nvim/plugins/lualine-nvim.lua
-      luafile $HOME/nix-files/config/nvim/plugins/nvim-lspconfig.lua
-      luafile $HOME/nix-files/config/nvim/plugins/nvim-cmp.lua
+      luafile $HOME/nix-files/config/nvim/plugins/lspconfig.lua
       luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
@@ -53,7 +52,11 @@
         vim-fugitive
 
         #lsp
-        nvim-lspconfig
+        nvim-lspconfig #This is needed to fetch all the lsp servers configured 
+                       #in lsp/ of the plugin directory
+                       #This directory contains ALL the lsp server configurations
+                       # which then they are called in lspconfig.lua
+                       # to find the plugin path: lua print(vim.inspect(vim.api.nvim_list_runtime_paths()))
         lspsaga-nvim
 
         #completion
@@ -91,11 +94,9 @@
 
         ##python
 
-        ##rust
-        ### https://www.youtube.com/watch?v=E2mKJ73M9pg
-        ### https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/
-        rustaceanvim
-
+        #rust
+        ## I used to have rusteacea.nvim but it's not worth it because at the 
+        ## end I use fzf-lua for everything
 
         #treesitter
         nvim-treesitter

@@ -96,6 +96,9 @@ opt.listchars = {eol = '¬', tab = '▸ '}
 opt.backspace = {'eol','start','indent'}
 opt.whichwrap = opt.whichwrap + '<,>,h,l'
 
+-- making border rounded
+opt.winborder = 'rounded'
+
 
 vim.cmd [[
     set nobackup
