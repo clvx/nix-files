@@ -71,7 +71,7 @@
     pkgs.kind
     pkgs.kubectl
     pkgs.kubeswitch
-    #pkgs.direnv
+    pkgs.direnv
     #pkgs.gh
 
     #zsh
