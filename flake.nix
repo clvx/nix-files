@@ -1,5 +1,5 @@
 {
-  description = "Home‑Manager‑only flake for the vagrant user (inside your Vagrant VM).";
+  description = "Generic Flake for clvx/nix-files on any Linux distro based on Home Manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -10,8 +10,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
+  let
     system = "x86_64-linux";
+    
+    # read the environment of the process that invokes Nix - MAKES IT IMPURE
+    username = builtins.getEnv "USER";
+    homedir  = builtins.getEnv "HOME";
+
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -22,21 +28,20 @@
     };
 
   in {
-    homeConfigurations.vagrant = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
         inherit inputs system pkgs-unstable;
       };
       modules = [
         ({ config, ... }: {
-          home.username      = "vagrant";
-          home.homeDirectory = "/home/vagrant";
+          home.username      = username;
+          home.homeDirectory = homedir;
         })
         ./config/nix/home.nix
       ];
     };
-    # To enable nix run .#vagrant
-    packages.${system}.vagrant = self.homeConfigurations.vagrant.activationPackage;
+    # Run as: nix run .
+    packages.${system}.default = self.homeConfigurations.${username}.activationPackage;
   };
-
 }
