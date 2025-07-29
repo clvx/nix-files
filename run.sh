@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail   # exit on any error including the installer
 
-echo "1. Installing Nix package manager…"
+echo "1. Installing Nix package manager"
+echo "Nix installation from Determinate Systems: https://zero-to-nix.com/start/install/
+
 curl --proto '=https' --tlsv1.2 -sSf -L \
      https://install.determinate.systems/nix \
   | sh -s -- install --no-confirm
