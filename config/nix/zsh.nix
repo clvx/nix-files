@@ -8,8 +8,8 @@ programs.zsh = {
     };
     enableCompletion = true;
     sessionVariables = {
-      PATH = "$PATH:$HOME/Code/academy/go/bin";
-      GOPATH = "$HOME/Code/academy/go";
+      #PATH = "$PATH:$HOME/Code/academy/go/bin";
+      #GOPATH = "$HOME/Code/academy/go"; #using default GOPATH
       #FZF_DEFAULT_COMMAND = "find . -type f -not -path '*/\.git/*'";
       DOCKER_BUILDKIT = 1;
     };

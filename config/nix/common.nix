@@ -15,14 +15,14 @@
 
   home.packages = [
     #must haves
-    pkgs.cowsay
+    #pkgs.cowsay
     pkgs.ripgrep
     pkgs.tree
     pkgs.jq
     pkgs.gcc
     pkgs.bat
     pkgs.z-lua
-    pkgs.hey
+    #pkgs.hey
     pkgs.gnumake
     pkgs.wget
 
@@ -40,15 +40,15 @@
     pkgs.gofumpt
     pkgs.gotestsum
     pkgs.golines
-    ##python
-    pkgs.pyenv
-    pkgs.python3
-    pkgs.uv
-    ##rust-analyzer
-    pkgs.rustc
-    pkgs.cargo
-    pkgs.rustfmt
-    pkgs.clippy
+    ###python
+    #pkgs.pyenv
+    #pkgs.python3
+    #pkgs.uv
+    ###rust-analyzer
+    #pkgs.rustc
+    #pkgs.cargo
+    #pkgs.rustfmt
+    #pkgs.clippy
     ##others
     pkgs.mockgen
     pkgs.iferr
@@ -58,14 +58,14 @@
 
     #language servers
     pkgs.gopls
-    pkgs.pyright
-    pkgs.ruff
-    pkgs.lua-language-server
+    #pkgs.pyright
+    #pkgs.ruff
+    #pkgs.lua-language-server
     pkgs.nil
     pkgs.nixd
-    pkgs.vscode-langservers-extracted
-    pkgs.rust-analyzer
-    pkgs.typescript-language-server
+    #pkgs.vscode-langservers-extracted
+    #pkgs.rust-analyzer
+    #pkgs.typescript-language-server
 
     
     #other packages

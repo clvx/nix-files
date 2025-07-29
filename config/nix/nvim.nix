@@ -61,19 +61,18 @@
 
         #completion
         plenary-nvim
-        nvim-cmp
-        cmp-buffer
-        cmp-path
-        cmp-nvim-lua
-        cmp-nvim-lsp
-        cmp-cmdline
+        #nvim-cmp
+        #cmp-buffer
+        #cmp-path
+        #cmp-nvim-lua
+        #cmp-nvim-lsp
+        #cmp-cmdline
         luasnip
-        cmp_luasnip
+        #cmp_luasnip
 
         #ai
         copilot-vim
         codecompanion-nvim
-
 
         ##go
         #vim-go
