@@ -1,19 +1,8 @@
 #!/usr/bin/env bash
 
-HOST="$1"
-shift # Remove the first argument (the hostname) from the list of arguments
-CURRENT=$(hostname)
+echo "1. Installing Nix package manager..."
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+  | sh -s -- install --no-confirm
 
-if [[ "$HOST" != "$CURRENT" ]]; then
-    echo "This script is intended to be run on $HOST, but the current hostname is $CURRENT."
-    exit 1
-fi
-
-echo ${HOST}
-
-nixos-rebuild switch --flake .#${HOST} $@
-
-
-## adding this at initial setup
-#command -v zsh | sudo tee -a /etc/shells
-#sudo chsh -s "$(command -v zsh)" "${USER}"
+echo "2. Setting up Nix configuration..."
+nix run .#vagrant
