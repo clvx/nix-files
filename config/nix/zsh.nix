@@ -30,30 +30,6 @@ function kport {
 }
       
     ";
-    plugins = with pkgs; [
-      {
-        name = "zsh-syntax-highlighting";
-        src = fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "0.7.1";
-          sha256 = "sha256-gOG0NLlaJfotJfs+SUhGgLTNOnGLjoqnUp54V9aFJg8=";
-          #sha256 = lib.fakeSha256; #leave hash empty if rev changes - update after it's processed
-        };
-        file = "zsh-syntax-highlighting.zsh";
-      }
-      {
-        name = "zsh-completions";
-        src = fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-completions";
-          rev = "0.34.0";
-          sha256 = "sha256-qSobM4PRXjfsvoXY6ENqJGI9NEAaFFzlij6MPeTfT0o=";
-          #sha256 = lib.fakeSha256; #leave hash empty if rev changes - update after it's processed
-        };
-        file = "zsh-syntax-highlighting.zsh";
-      }
-    ];
     oh-my-zsh = {
       enable = true;
       plugins = [

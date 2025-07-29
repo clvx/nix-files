@@ -20,7 +20,7 @@
     pkgs.tree
     pkgs.jq
     pkgs.gcc
-    pkgs.bat
+    #pkgs.bat
     pkgs.z-lua
     #pkgs.hey
     pkgs.gnumake
@@ -61,7 +61,6 @@
     #pkgs.pyright
     #pkgs.ruff
     #pkgs.lua-language-server
-    pkgs.nil
     pkgs.nixd
     #pkgs.vscode-langservers-extracted
     #pkgs.rust-analyzer
@@ -72,8 +71,12 @@
     pkgs.kind
     pkgs.kubectl
     pkgs.kubeswitch
-    pkgs.direnv
-    pkgs.gh
+    #pkgs.direnv
+    #pkgs.gh
+
+    #zsh
+    pkgs.zsh-syntax-highlighting
+    pkgs.zsh-completions
 
     pkgs.vagrant
     pkgs.docker-compose
