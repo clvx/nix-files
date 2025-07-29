@@ -78,7 +78,7 @@
     pkgs.zsh-syntax-highlighting
     pkgs.zsh-completions
 
-    pkgs.vagrant
+    #pkgs.vagrant
     pkgs.docker-compose
 
     #network

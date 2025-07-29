@@ -70,9 +70,9 @@
         luasnip
         #cmp_luasnip
 
-        #ai
-        copilot-vim
-        codecompanion-nvim
+        ##ai
+        #copilot-vim
+        #codecompanion-nvim
 
         ##go
         #vim-go
