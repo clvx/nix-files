@@ -44,11 +44,11 @@
     #pkgs.pyenv
     #pkgs.python3
     #pkgs.uv
-    ###rust-analyzer
-    #pkgs.rustc
-    #pkgs.cargo
-    #pkgs.rustfmt
-    #pkgs.clippy
+    ##rust-analyzer
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.rustfmt
+    pkgs.clippy
     ##others
     pkgs.mockgen
     pkgs.iferr
