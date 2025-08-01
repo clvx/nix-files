@@ -31,15 +31,15 @@
 
     #programming languages
     ##go
-    pkgs.go
-    pkgs.golangci-lint
-    pkgs.govulncheck
-    pkgs.gomodifytags
-    pkgs.gotests
-    pkgs.richgo
-    pkgs.gofumpt
-    pkgs.gotestsum
-    pkgs.golines
+    #pkgs.go
+    #pkgs.golangci-lint
+    #pkgs.govulncheck
+    #pkgs.gomodifytags
+    #pkgs.gotests
+    #pkgs.richgo
+    #pkgs.gofumpt
+    #pkgs.gotestsum
+    #pkgs.golines
     ###python
     #pkgs.pyenv
     #pkgs.python3
@@ -57,13 +57,13 @@
     pkgs.delve
 
     #language servers
-    pkgs.gopls
+    #pkgs.gopls
     #pkgs.pyright
     #pkgs.ruff
     #pkgs.lua-language-server
     pkgs.nixd
     #pkgs.vscode-langservers-extracted
-    #pkgs.rust-analyzer
+    pkgs.rust-analyzer
     #pkgs.typescript-language-server
 
     

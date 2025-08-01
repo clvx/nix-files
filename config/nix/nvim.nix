@@ -15,7 +15,6 @@
       luafile $HOME/nix-files/config/nvim/plugins/lspconfig.lua
       luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
-      luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
       luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
       luafile $HOME/nix-files/config/nvim/plugins/noice-nvim.lua
     '';
@@ -75,9 +74,9 @@
 
         ##go
         #vim-go
-        go-nvim
+        #go-nvim
         nvim-dap
-        nvim-dap-go
+        #nvim-dap-go
         nvim-dap-ui
         #go custom plugins
         #(pkgs-unstable.vimUtils.buildVimPlugin {
