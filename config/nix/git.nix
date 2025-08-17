@@ -62,6 +62,7 @@
         };
         merge = {
           conflictStyle = "zdiff3";
+          tool = "nvimdiff";
         };
         pull = {
           rebase = "true";
