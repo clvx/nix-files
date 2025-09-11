@@ -75,7 +75,7 @@
     pkgs.direnv
     pkgs.gh
 
-    pkgs.vagrant
+    #pkgs.vagrant
     pkgs.docker-compose
 
     #network
