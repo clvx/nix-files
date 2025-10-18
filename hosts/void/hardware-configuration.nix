@@ -21,9 +21,9 @@
     #"luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true; };
     #"luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true; };
     "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; };
-    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; };
-    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; };
-    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; };
+    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/989e9fcc-5868-47e8-8328-e19e6b74a6e2"; };
+    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; };
+    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/aaf93024-4e50-4ae2-be32-22c2c95f39bc"; };
 
   };
 
