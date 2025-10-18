@@ -16,12 +16,15 @@
   boot.initrd.supportedFilesystems = [ "btrfs" ];
 
   boot.initrd.luks.devices = {
-    "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; tpm2.enable = true; };
-    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
-    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true;
-                         crypttabExtraOptions = [ "nofail" "x-systemd.device-timeout=5s" ]; };
-    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true;
-                         crypttabExtraOptions = [ "nofail" "x-systemd.device-timeout=5s" ]; };
+    #"luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; tpm2.enable = true; };
+    #"luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
+    #"luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true; };
+    #"luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true; };
+    "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; };
+    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; };
+    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; };
+    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; };
+
   };
 
   fileSystems."/" = {
