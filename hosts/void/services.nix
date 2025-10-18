@@ -59,7 +59,7 @@
     # NixOs binary cache configuration
     #https://nixos.wiki/wiki/Binary_Cache
     nix-serve = {
-      enable = true;
+      enable = false;
       secretKeyFile = "/var/cache-priv-key.pem";
     };
 
