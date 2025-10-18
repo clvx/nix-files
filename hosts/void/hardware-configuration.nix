@@ -58,6 +58,51 @@
     { device = "/dev/mapper/luks-nvme1n1p2"; priority = 100; }
   ];
 
+  ###
+  # /home mount points
+
+  fileSystems."/home/clvx/Documents" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-documents" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+  fileSystems."/home/clvx/Downloads" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-downloads" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+
+  fileSystems."/home/clvx/Code" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-code" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+
+  fileSystems."/home/clvx/Music" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-music" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+
+  fileSystems."/home/clvx/Pictures" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-pictures" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+
+  fileSystems."/home/clvx/Templates" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-templates" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+
+  fileSystems."/home/clvx/Videos" = {
+    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    fsType = "btrfs";
+    options = [ "subvol=@users-clvx-videos" "compress=zstd:3" "ssd" "discard=async" "noatime" ];
+  };
+  ###
+
   boot.resumeDevice = "/dev/mapper/luks-nvme0n1p2";
   boot.kernelParams = [ "resume=/dev/mapper/luks-nvme0n1p2" ];
 
