@@ -7,77 +7,60 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
-
   boot.supportedFilesystems = [ "btrfs" ];
   boot.initrd.supportedFilesystems = [ "btrfs" ];
 
-  # Enable when tpm2 is available
-  #boot.initrd.luks.devices = {
-  #  "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/<uuid0-root>"; tpm2.enable = true; };
-  #  "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
-  #  "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true; };
-  #  "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true; };
-  #};
-
   boot.initrd.luks.devices = {
-    "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/<uuid0-root>"; };
-    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; };
-    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; };
-    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; };
+    "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; tpm2.enable = true; };
+    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
+    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true;
+                         crypttabExtraOptions = [ "nofail" "x-systemd.device-timeout=5s" ]; };
+    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true;
+                         crypttabExtraOptions = [ "nofail" "x-systemd.device-timeout=5s" ]; };
   };
 
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    fsType = "btrfs";
+    options = [ "subvol=@nix-root" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+  };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
-      fsType = "btrfs";
-      options = [ "subvol=@nix-root" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    fsType = "btrfs";
+    options = [ "subvol=@nix" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+    neededForBoot = true;
+  };
 
-  boot.initrd.luks.devices."luks-nvme0n1p3".device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8";
+  fileSystems."/.snapshots" = {
+    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    fsType = "btrfs";
+    options = [ "subvol=@snapshots" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+  };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" ];
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/0144-822B";
+    fsType = "vfat";
+    options = [ "fmask=0022" "dmask=0022" ];
+  };
 
-  fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
-      fsType = "btrfs";
-      options = [ "subvol=@snapshots" ];
-    };
-
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/0144-822B";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
-    swapDevices = [
-      { device = "/dev/mapper/luks-nvme0n1p2"; priority = 100; }
-      { device = "/dev/mapper/luks-nvme1n1p2"; priority = 100; }
-    ];
-
+  swapDevices = [
+    { device = "/dev/mapper/luks-nvme0n1p2"; priority = 100; }
+    { device = "/dev/mapper/luks-nvme1n1p2"; priority = 100; }
+  ];
 
   boot.resumeDevice = "/dev/mapper/luks-nvme0n1p2";
   boot.kernelParams = [ "resume=/dev/mapper/luks-nvme0n1p2" ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
+  services.btrfs.autoScrub.enable = true;
+  services.fstrim.enable = true;
 
+  networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
