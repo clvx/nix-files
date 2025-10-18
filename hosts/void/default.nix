@@ -11,22 +11,7 @@
       # (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  #TODO: this boot options need to be updated
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  #This is good
-  boot.initrd.availableKernelModules = [ 
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usb_storage"
-    "usbhid"
-    "sd_mod"
-    #used by cilium
-    "ip6table_mangle"
-    "ip6table_raw"
-  ];
+  environment.systemPackages = with pkgs; [  btrfs-progs cryptsetup ];
 
   time.timeZone = "America/Denver";
 
@@ -34,6 +19,6 @@
     steam.enable = true;
   };
 
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }

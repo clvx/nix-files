@@ -1,51 +1,40 @@
 {config, lib, pkgs, pkgs-unstable, ...}:
 {
-  age = { 
-    # Define the secrets to be managed by agenix
-    secrets = {
-      # For ACME’s Gandi DNS provider credentials
-      gandi-api-key = {
-        file = ../../secrets/gandi-api-key.age;
-        owner = "acme";
-      };
+  #age = { 
+  #  # Define the secrets to be managed by agenix
+  #  secrets = {
+  #    # For ACME’s Gandi DNS provider credentials
+  #    gandi-api-key = {
+  #      file = ../../secrets/gandi-api-key.age;
+  #      owner = "acme";
+  #    };
 
-      # For Nextcloud’s admin password
-      nextcloud-admin-pass = {
-        file = ../../secrets/nextcloud-admin-pass.age;
-        owner = "nextcloud";
-        mode = "0440";
-      };
-    };
-  };
+  #    # For Nextcloud’s admin password
+  #    nextcloud-admin-pass = {
+  #      file = ../../secrets/nextcloud-admin-pass.age;
+  #      owner = "nextcloud";
+  #      mode = "0440";
+  #    };
+  #  };
+  #};
 
- security = {
-   acme = {
-     acceptTerms = true;
-     defaults.email = "michael.ibarra@gmail.com";
-     certs = {
-       ${config.services.nextcloud.hostName} = {
-         dnsProvider = "gandiv5";
-         # Let's encrypt credentials MUST follow https://go-acme.github.io/lego/dns/
-         credentialsFile = config.age.secrets.gandi-api-key.path;
-         #server = "https://acme-staging-v02.api.letsencrypt.org/directory"; #staging server
-         group = config.services.nginx.group;
-       };
-     };
-   };
- };
+ #security = {
+ #  acme = {
+ #    acceptTerms = true;
+ #    defaults.email = "michael.ibarra@gmail.com";
+ #    certs = {
+ #      ${config.services.nextcloud.hostName} = {
+ #        dnsProvider = "gandiv5";
+ #        # Let's encrypt credentials MUST follow https://go-acme.github.io/lego/dns/
+ #        credentialsFile = config.age.secrets.gandi-api-key.path;
+ #        #server = "https://acme-staging-v02.api.letsencrypt.org/directory"; #staging server
+ #        group = config.services.nginx.group;
+ #      };
+ #    };
+ #  };
+ #};
 
   services = {
-    ## enable ZFS auto snapshot on datasets
-    ## You need to set the auto snapshot property to "true"
-    ## on datasets for this to work, such as
-    # zfs set com.sun:auto-snapshot=true rpool/nixos/home
-    zfs = {
-      autoSnapshot = {
-        enable = false; flags = "-k -p --utc";
-        monthly = 48;
-      };
-    };
-
 
     #LLM - https://wiki.nixos.org/wiki/Ollama
     ollama = {
@@ -75,7 +64,7 @@
     };
 
     nginx = {
-      enable = true;
+      enable = false;
       recommendedProxySettings = true;
       virtualHosts = {
         # ... existing hosts config etc. ...
@@ -97,7 +86,7 @@
 
     #https://github.com/NixOS/nixpkgs/issues/111175
     nextcloud = {
-      enable = true;
+      enable = false;
       hostName = "nc.bitclvx.com";
 
        # Need to manually increment with every major upgrade.

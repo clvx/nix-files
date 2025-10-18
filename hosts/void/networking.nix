@@ -10,10 +10,10 @@
     '';
     firewall = {
       allowedTCPPorts = [ 
-        11434  #ollama
-        6443 #k3s
-        80 #nginx hosting nixos binary cache
-        443 #nginx
+        # 11434  #ollama
+        # 6443 #k3s
+        # 80 #nginx hosting nixos binary cache
+        # 443 #nginx
         53317 #localsend
       ];
     };
@@ -22,7 +22,4 @@
     ];
 
   };
-
-  #ZFS config
-  networking.hostId = "810dc719";
 }

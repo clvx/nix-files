@@ -49,9 +49,6 @@
         };
 
         modules = [
-          # Root on ZFS related configuration
-          #./modules
-
           agenix.nixosModules.default
 
           # Configuration shared by all hosts
