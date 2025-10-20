@@ -5,23 +5,38 @@
 
 {
   imports =
-    [ 
+    [
       inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Enabling UKI. systemd >= 257 forces using UKI for TPM2 unseal.
+  boot.bootspec.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.initrd.systemd.enable = true;
+
+  boot.initrd.availableKernelModules = [
+    "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"
+    "tpm" "tpm_tis" "tpm_crb" #this is needed for TPM2 support
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/b9b0a1c1-6ec7-4cc8-9a9c-ecbddfe9ed24";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-07d49276-20f8-4162-b8fc-5c56099fe59a".device = "/dev/disk/by-uuid/07d49276-20f8-4162-b8fc-5c56099fe59a";
+    boot.initrd.luks.devices."luks-07d49276-20f8-4162-b8fc-5c56099fe59a" = { 
+      device = "/dev/disk/by-uuid/07d49276-20f8-4162-b8fc-5c56099fe59a"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/5F8A-93D5";

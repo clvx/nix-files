@@ -6,13 +6,16 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "abyss";
 
   #networking.networkmanager.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    # This is needed to auto-unlock LUKS with TPM 2 - https://discourse.nixos.org/t/full-disk-encryption-tpm2/29454/2
+    tpm2-tss
+    tpm2-tools
+    systemdUkify
+  ];
 
   # Set your time zone.
   time.timeZone = "America/Denver";
