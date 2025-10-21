@@ -11,7 +11,13 @@
       # (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  environment.systemPackages = with pkgs; [  btrfs-progs cryptsetup ];
+    environment.systemPackages = with pkgs; [  
+      btrfs-progs 
+      cryptsetup 
+      systemdUkify
+      tpm2-tss
+      tpm2-tools
+    ];
 
   time.timeZone = "America/Denver";
 

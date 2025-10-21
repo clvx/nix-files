@@ -11,7 +11,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  # Enabling UKI. systemd >= 257 forces using UKI for TPM2 unseal.
+  boot.bootspec.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.initrd.systemd.enable = true;
+
+
+  boot.initrd.availableKernelModules = [ 
+    "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" 
+    "tpm" "tpm_tis" "tpm_crb" #this is needed for TPM2 support
+  ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.supportedFilesystems = [ "btrfs" ];
   boot.initrd.supportedFilesystems = [ "btrfs" ];
@@ -21,14 +30,38 @@
     #"luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
     #"luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true; };
     #"luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true; };
-    "luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; };
-    "luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/989e9fcc-5868-47e8-8328-e19e6b74a6e2"; };
-    "luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; };
-    "luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/aaf93024-4e50-4ae2-be32-22c2c95f39bc"; };
-    "luks-sda" = { device = "/dev/disk/by-uuid/69d7cfef-0e25-4fbf-98e1-a1a98f3f54dd"; };
-    "luks-sdb" = { device = "/dev/disk/by-uuid/b817e731-ddda-44ae-a3e2-23a1d22ae40c"; };
-    "luks-sdc" = { device = "/dev/disk/by-uuid/1f1b8282-68fc-45a6-aa95-a87f48a6a16e"; };
-    "luks-sdd" = { device = "/dev/disk/by-uuid/da95eba7-4bbe-46f6-9fd6-b7e0ecd6922d"; };
+    "luks-nvme0n1p3" = { 
+      device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-nvme1n1p3" = { 
+      device = "/dev/disk/by-uuid/989e9fcc-5868-47e8-8328-e19e6b74a6e2"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-nvme0n1p2" = { 
+      device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-nvme1n1p2" = { 
+      device = "/dev/disk/by-uuid/aaf93024-4e50-4ae2-be32-22c2c95f39bc"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-sda" = { 
+      device = "/dev/disk/by-uuid/69d7cfef-0e25-4fbf-98e1-a1a98f3f54dd"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-sdb" = { 
+      device = "/dev/disk/by-uuid/b817e731-ddda-44ae-a3e2-23a1d22ae40c"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-sdc" = { 
+      device = "/dev/disk/by-uuid/1f1b8282-68fc-45a6-aa95-a87f48a6a16e"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
+    "luks-sdd" = { 
+      device = "/dev/disk/by-uuid/da95eba7-4bbe-46f6-9fd6-b7e0ecd6922d"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
 
   };
 
