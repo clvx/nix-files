@@ -26,36 +26,32 @@
   boot.initrd.supportedFilesystems = [ "btrfs" ];
 
   boot.initrd.luks.devices = {
-    #"luks-nvme0n1p3" = { device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; tpm2.enable = true; };
-    #"luks-nvme1n1p3" = { device = "/dev/disk/by-uuid/<uuid1-root>"; tpm2.enable = true; };
-    #"luks-nvme0n1p2" = { device = "/dev/disk/by-uuid/<uuid0-swap>"; tpm2.enable = true; };
-    #"luks-nvme1n1p2" = { device = "/dev/disk/by-uuid/<uuid1-swap>"; tpm2.enable = true; };
     "luks-nvme0n1p3" = { 
-      device = "/dev/disk/by-uuid/c39a8b69-70af-408f-b7ca-bbaccc7d63e8"; 
-      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
-    };
-    "luks-nvme1n1p3" = { 
       device = "/dev/disk/by-uuid/989e9fcc-5868-47e8-8328-e19e6b74a6e2"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
-    "luks-nvme0n1p2" = { 
-      device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; 
+    "luks-nvme1n1p3" = { 
+      device = "/dev/disk/by-uuid/f9001b3a-10bd-4902-94af-2f3c68f580f3"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
-    "luks-nvme1n1p2" = { 
+    "luks-nvme0n1p2" = { 
       device = "/dev/disk/by-uuid/aaf93024-4e50-4ae2-be32-22c2c95f39bc"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
+    "luks-nvme1n1p2" = { 
+      device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; 
+      crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
+    };
     "luks-sda" = { 
-      device = "/dev/disk/by-uuid/69d7cfef-0e25-4fbf-98e1-a1a98f3f54dd"; 
+      device = "/dev/disk/by-uuid/1f1b8282-68fc-45a6-aa95-a87f48a6a16e"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-sdb" = { 
-      device = "/dev/disk/by-uuid/b817e731-ddda-44ae-a3e2-23a1d22ae40c"; 
+      device = "/dev/disk/by-uuid/69d7cfef-0e25-4fbf-98e1-a1a98f3f54dd"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-sdc" = { 
-      device = "/dev/disk/by-uuid/1f1b8282-68fc-45a6-aa95-a87f48a6a16e"; 
+      device = "/dev/disk/by-uuid/b817e731-ddda-44ae-a3e2-23a1d22ae40c"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-sdd" = { 
@@ -85,7 +81,7 @@
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/0144-822B";
+    device = "/dev/disk/by-uuid/6DE4-4CE5";
     fsType = "vfat";
     options = [ "fmask=0022" "dmask=0022" ];
   };
@@ -99,7 +95,7 @@
   # /home mount points
 
   fileSystems."/home/clvx/Documents" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-documents" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -107,7 +103,7 @@
     	"x-systemd.device-timeout=5s" ];
   };
   fileSystems."/home/clvx/Downloads" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-downloads" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -116,7 +112,7 @@
   };
 
   fileSystems."/home/clvx/Code" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-code" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -125,7 +121,7 @@
   };
 
   fileSystems."/home/clvx/Music" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-music" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -134,7 +130,7 @@
   };
 
   fileSystems."/home/clvx/Pictures" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-pictures" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -143,7 +139,7 @@
   };
 
   fileSystems."/home/clvx/Templates" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-templates" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
@@ -152,7 +148,7 @@
   };
 
   fileSystems."/home/clvx/Videos" = {
-    device = "/dev/disk/by-uuid/d6c80ade-98d8-4e6a-ba1b-f45ebeb42cf8";
+    device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
     options = [ "subvol=@users-clvx-videos" "compress=zstd:3" "ssd" "discard=async" "noatime" 
 	"x-systemd.automount"   # lazy mount on first access
