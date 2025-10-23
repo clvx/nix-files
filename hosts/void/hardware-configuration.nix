@@ -155,6 +155,36 @@
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
   };
+
+  # /srv/data mount points
+  fileSystems."/srv/data/nextcloud" = {
+    device = "/dev/mapper/luks-sda";
+    fsType = "btrfs";
+    options = [ "subvol=@srv-data-nextcloud" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+	"x-systemd.automount"   # lazy mount on first access
+    	"nofail"                # don’t drop into rescue mode
+    	"x-systemd.device-timeout=5s" ];
+  };
+
+  # /srv/data mount points
+  fileSystems."/srv/data/docker" = {
+    device = "/dev/mapper/luks-sda";
+    fsType = "btrfs";
+    options = [ "subvol=@srv-data-docker" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+	"x-systemd.automount"   # lazy mount on first access
+    	"nofail"                # don’t drop into rescue mode
+    	"x-systemd.device-timeout=5s" ];
+  };
+
+  # /srv/data mount points
+  fileSystems."/srv/data/kubernetes" = {
+    device = "/dev/mapper/luks-sda";
+    fsType = "btrfs";
+    options = [ "subvol=@srv-data-kubernetes" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+	"x-systemd.automount"   # lazy mount on first access
+    	"nofail"                # don’t drop into rescue mode
+    	"x-systemd.device-timeout=5s" ];
+  };
   ###
 
   boot.resumeDevice = "/dev/mapper/luks-nvme0n1p2";
