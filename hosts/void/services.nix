@@ -3,11 +3,11 @@
   #age = { 
   #  # Define the secrets to be managed by agenix
   #  secrets = {
-  #    # For ACME’s Gandi DNS provider credentials
-  #    gandi-api-key = {
-  #      file = ../../secrets/gandi-api-key.age;
-  #      owner = "acme";
-  #    };
+  ##    # For ACME’s Gandi DNS provider credentials
+  ##    gandi-api-key = {
+  ##      file = ../../secrets/gandi-api-key.age;
+  ##      owner = "acme";
+  ##    };
 
   #    # For Nextcloud’s admin password
   #    nextcloud-admin-pass = {
@@ -59,27 +59,27 @@
     # NixOs binary cache configuration
     #https://nixos.wiki/wiki/Binary_Cache
     nix-serve = {
-      enable = false;
+      enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
     };
 
     nginx = {
-      enable = false;
+      enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
         # ... existing hosts config etc. ...
-        #"binarycache.bitclvx.com" = {
-        #  locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
-        #};
-        ${config.services.nextcloud.hostName} = {
-          forceSSL = true;
-          enableACME = true; #TODO: Write about this option and acmeRoot being null
-          acmeRoot = null;
-
-          # The important lines:
-          sslCertificate = config.security.acme.certs."${config.services.nextcloud.hostName}".certificate;
-          sslCertificateKey = config.security.acme.certs."${config.services.nextcloud.hostName}".key;
+        "binarycache.bitclvx.com" = {
+          locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
         };
+        #${config.services.nextcloud.hostName} = {
+        #  forceSSL = true;
+        #  enableACME = true; #TODO: Write about this option and acmeRoot being null
+        #  acmeRoot = null;
+
+        #  # The important lines:
+        #  sslCertificate = config.security.acme.certs."${config.services.nextcloud.hostName}".certificate;
+        #  sslCertificateKey = config.security.acme.certs."${config.services.nextcloud.hostName}".key;
+        #};
       };
     };
 
@@ -91,6 +91,9 @@
 
        # Need to manually increment with every major upgrade.
       package = pkgs.nextcloud31;
+
+      # btrfs mount point
+      datadir = "/srv/data/nextcloud";
 
       # Let NixOS install and configure the database automatically.
       database.createLocally = true;
