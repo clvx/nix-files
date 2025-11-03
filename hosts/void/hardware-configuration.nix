@@ -27,19 +27,19 @@
 
   boot.initrd.luks.devices = {
     "luks-nvme0n1p3" = { 
-      device = "/dev/disk/by-uuid/989e9fcc-5868-47e8-8328-e19e6b74a6e2"; 
+      device = "/dev/disk/by-uuid/9fd6099b-2f7f-4dd2-890f-695cbe6bc09d"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-nvme1n1p3" = { 
-      device = "/dev/disk/by-uuid/f9001b3a-10bd-4902-94af-2f3c68f580f3"; 
+      device = "/dev/disk/by-uuid/87673dc9-edbe-4dbc-943d-188e6a4ca102"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-nvme0n1p2" = { 
-      device = "/dev/disk/by-uuid/aaf93024-4e50-4ae2-be32-22c2c95f39bc"; 
+      device = "/dev/disk/by-uuid/71bc26fe-e0ef-475a-b6fb-5dce6cd97f75"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-nvme1n1p2" = { 
-      device = "/dev/disk/by-uuid/afb6343e-706c-459c-9924-9cd4f2c4d1e7"; 
+      device = "/dev/disk/by-uuid/9efac2c0-dd11-4d64-b1ef-391d42127bc9"; 
       crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=0" ]; # As no secure boot, we only need PCR 0
     };
     "luks-sda" = { 
@@ -62,26 +62,26 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
     options = [ "subvol=@nix-root" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
     options = [ "subvol=@nix" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
     neededForBoot = true;
   };
 
   fileSystems."/.snapshots" = {
-    device = "/dev/disk/by-uuid/b49ab417-94a5-4857-80f4-ca11b08d6cc7";
+    device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
     options = [ "subvol=@snapshots" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/6DE4-4CE5";
+    device = "/dev/disk/by-uuid/5109-FD06";
     fsType = "vfat";
     options = [ "fmask=0022" "dmask=0022" ];
   };
