@@ -64,20 +64,20 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
-    options = [ "subvol=@nix-root" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+    options = [ "subvol=@nix-root" "compress=zstd:3" "ssd"  "noatime" "space_cache=v2" ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
-    options = [ "subvol=@nix" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+    options = [ "subvol=@nix" "compress=zstd:3" "ssd"  "noatime" "space_cache=v2" ];
     neededForBoot = true;
   };
 
   fileSystems."/.snapshots" = {
     device = "/dev/disk/by-uuid/1457fd70-cea1-45a2-88d7-8e9e9fadde8c";
     fsType = "btrfs";
-    options = [ "subvol=@snapshots" "compress=zstd:3" "ssd" "discard=async" "noatime" "space_cache=v2" ];
+    options = [ "subvol=@snapshots" "compress=zstd:3" "ssd"  "noatime" "space_cache=v2" ];
   };
 
   fileSystems."/boot/efi" = {
@@ -97,7 +97,7 @@
   fileSystems."/home/clvx/Documents" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-documents" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-documents" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -105,7 +105,7 @@
   fileSystems."/home/clvx/Downloads" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-downloads" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-downloads" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -114,7 +114,7 @@
   fileSystems."/home/clvx/Code" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-code" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-code" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -123,7 +123,7 @@
   fileSystems."/home/clvx/Music" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-music" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-music" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -132,7 +132,7 @@
   fileSystems."/home/clvx/Pictures" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-pictures" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-pictures" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -141,7 +141,7 @@
   fileSystems."/home/clvx/Templates" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-templates" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-templates" "compress=zstd:3" "ssd"  "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
@@ -150,7 +150,7 @@
   fileSystems."/home/clvx/Videos" = {
     device = "/dev/mapper/luks-sda";
     fsType = "btrfs";
-    options = [ "subvol=@users-clvx-videos" "compress=zstd:3" "ssd" "discard=async" "noatime" 
+    options = [ "subvol=@users-clvx-videos" "compress=zstd:3" "ssd" "noatime"
 	"x-systemd.automount"   # lazy mount on first access
     	"nofail"                # don’t drop into rescue mode
     	"x-systemd.device-timeout=5s" ];
