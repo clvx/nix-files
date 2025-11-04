@@ -16,6 +16,8 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.initrd.systemd.enable = true;
 
+  #latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.availableKernelModules = [ 
     "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" 
@@ -24,6 +26,33 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.supportedFilesystems = [ "btrfs" ];
   boot.initrd.supportedFilesystems = [ "btrfs" ];
+
+  boot.kernelParams = [ 
+    "amd_pstate=disable"
+    "pcie_aspm=performance"                            # or: pcie_aspm=off
+    "nvme_core.default_ps_max_latency_us=0"    # disable NVMe APST
+    "usbcore.autosuspend=-1"                   # no USB autosuspend
+    "resume=/dev/mapper/luks-nvme0n1p2" 
+  ];
+
+  boot.resumeDevice = "/dev/mapper/luks-nvme0n1p2";
+
+  services.btrfs.autoScrub.enable = true;
+  services.fstrim.enable = true;
+
+  #forcing to autosuspend bluetooth
+  boot.extraModprobeConfig = ''
+    options btusb enable_autosuspend=n
+  '';
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", DRIVERS=="btusb", \
+      RUN+="${pkgs.bluez}/bin/hciconfig hci0 reset"
+  '';
+
+  hardware.enableAllFirmware = true;
+  hardware.firmware = [ pkgs.linux-firmware ];
+
 
   boot.initrd.luks.devices = {
     "luks-nvme0n1p3" = { 
@@ -187,11 +216,6 @@
   };
   ###
 
-  boot.resumeDevice = "/dev/mapper/luks-nvme0n1p2";
-  boot.kernelParams = [ "resume=/dev/mapper/luks-nvme0n1p2" ];
-
-  services.btrfs.autoScrub.enable = true;
-  services.fstrim.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
