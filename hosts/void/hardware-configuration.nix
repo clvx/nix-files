@@ -40,19 +40,8 @@
   services.btrfs.autoScrub.enable = true;
   services.fstrim.enable = true;
 
-  #forcing to autosuspend bluetooth
-  boot.extraModprobeConfig = ''
-    options btusb enable_autosuspend=n
-  '';
-
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", DRIVERS=="btusb", \
-      RUN+="${pkgs.bluez}/bin/hciconfig hci0 reset"
-  '';
-
   hardware.enableAllFirmware = true;
   hardware.firmware = [ pkgs.linux-firmware ];
-
 
   boot.initrd.luks.devices = {
     "luks-nvme0n1p3" = { 
@@ -185,39 +174,43 @@
     	"x-systemd.device-timeout=5s" ];
   };
 
-  # /srv/data mount points
-  fileSystems."/srv/data/nextcloud" = {
-    device = "/dev/mapper/luks-sda";
-    fsType = "btrfs";
-    options = [ "subvol=@srv-data-nextcloud" "compress=zstd:3" "ssd" "discard=async" "noatime" 
-	"x-systemd.automount"   # lazy mount on first access
-    	"nofail"                # don’t drop into rescue mode
-    	"x-systemd.device-timeout=5s" ];
-  };
+  ## /srv/data mount points
+  #fileSystems."/srv/data/nextcloud" = {
+  #  device = "/dev/mapper/luks-sda";
+  #  fsType = "btrfs";
+  #  options = [ "subvol=@srv-data-nextcloud" "compress=zstd:3" "ssd"  "noatime" 
+  #  "x-systemd.automount"   # lazy mount on first access
+  #  	"nofail"                # don’t drop into rescue mode
+  #  	"x-systemd.device-timeout=5s" ];
+  #};
 
-  # /srv/data mount points
-  fileSystems."/srv/data/docker" = {
-    device = "/dev/mapper/luks-sda";
-    fsType = "btrfs";
-    options = [ "subvol=@srv-data-docker" "compress=zstd:3" "ssd" "discard=async" "noatime" 
-	"x-systemd.automount"   # lazy mount on first access
-    	"nofail"                # don’t drop into rescue mode
-    	"x-systemd.device-timeout=5s" ];
-  };
+  ## /srv/data mount points
+  #fileSystems."/srv/data/docker" = {
+  #  device = "/dev/mapper/luks-sda";
+  #  fsType = "btrfs";
+  #  options = [ "subvol=@srv-data-docker" "compress=zstd:3" "ssd"  "noatime" 
+  #  "x-systemd.automount"   # lazy mount on first access
+  #  	"nofail"                # don’t drop into rescue mode
+  #  	"x-systemd.device-timeout=5s" ];
+  #};
 
-  # /srv/data mount points
-  fileSystems."/srv/data/kubernetes" = {
-    device = "/dev/mapper/luks-sda";
-    fsType = "btrfs";
-    options = [ "subvol=@srv-data-kubernetes" "compress=zstd:3" "ssd" "discard=async" "noatime" 
-	"x-systemd.automount"   # lazy mount on first access
-    	"nofail"                # don’t drop into rescue mode
-    	"x-systemd.device-timeout=5s" ];
-  };
+  ## /srv/data mount points
+  #fileSystems."/srv/data/kubernetes" = {
+  #  device = "/dev/mapper/luks-sda";
+  #  fsType = "btrfs";
+  #  options = [ "subvol=@srv-data-kubernetes" "compress=zstd:3" "ssd"  "noatime" 
+  #  "x-systemd.automount"   # lazy mount on first access
+  #  	"nofail"                # don’t drop into rescue mode
+  #  	"x-systemd.device-timeout=5s" ];
+  #};
   ###
 
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    # Updating firmware using https://github.com/NixOS/nixos-hardware/
+  services.fwupd.enable = true;
+
 }

@@ -27,4 +27,6 @@
 
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  services.irqbalance.enable = true; #helping with irq storm / bluetooth issues
+
 }
