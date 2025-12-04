@@ -71,7 +71,7 @@ in {
       zoom-us
       todoist-electron
       telegram-desktop
-      bitwarden
+      bitwarden-desktop
       slack
       nextcloud-client
       wl-clipboard
@@ -217,10 +217,10 @@ in {
       qemu = {
         package = pkgs.qemu_kvm; #only emulates host arch, smaller download
         swtpm.enable = true; # allows for creating emulated tpm
-        ovmf = { 
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
-        };
+        #ovmf = { 
+        #  enable = true;
+        #  packages = [ pkgs.OVMFFull.fd ];
+        #};
       };
     };
 
@@ -229,9 +229,9 @@ in {
       package = pkgs.docker_28;
     };
 
-    lxd = {
-      enable = false;
-    };
+    #lxd = {
+    #  enable = false;
+    #};
   };
 
   # Defines the system NixOs generation message with the flake commit used to build 
