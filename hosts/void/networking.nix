@@ -9,6 +9,12 @@
       127.0.0.1 nc.bitclvx.com
     '';
     firewall = {
+      interfaces = {
+        incusbr0 = {
+          allowedTCPPorts = [ 53 67 ];
+          allowedUDPPorts = [ 53 67 ];
+        };
+      };
       allowedTCPPorts = [ 
         # 11434  #ollama
         # 6443 #k3s
@@ -20,9 +26,5 @@
     nameservers = [ 
       #"10.100.100.10"
     ];
-    nftables = {
-      enable = true;
-    };
-
   };
 }
