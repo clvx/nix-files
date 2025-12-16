@@ -13,7 +13,14 @@ let
 in {
 
   #Networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager = {
+      enable = true;
+    };
+    nftables = {
+      enable = true;
+    };
+  };
 
   #Locale
   i18n.defaultLocale = "en_US.UTF-8";
@@ -61,7 +68,7 @@ in {
       "wheel"
       "libvirtd"
       "docker"
-      "lxd"
+      "incus-admin"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -229,9 +236,9 @@ in {
       package = pkgs.docker_28;
     };
 
-    #lxd = {
-    #  enable = false;
-    #};
+    incus = {
+      enable = true;
+    };
   };
 
   # Defines the system NixOs generation message with the flake commit used to build 

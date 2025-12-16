@@ -20,6 +20,9 @@
     nameservers = [ 
       #"10.100.100.10"
     ];
+    nftables = {
+      enable = true;
+    };
 
   };
 }
