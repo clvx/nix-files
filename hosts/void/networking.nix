@@ -21,6 +21,7 @@
         # 80 #nginx hosting nixos binary cache
         # 443 #nginx
         53317 #localsend
+        8443 #incus server
       ];
     };
     nameservers = [ 
