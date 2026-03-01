@@ -37,16 +37,18 @@ in {
   };
 
   #GUI
+  services.desktopManager.gnome.enable = true;
+  services.displayManager = {
+    gdm.enable = true;
+    defaultSession = "gnome"; # forcing graphic target in systemd
+  };
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     xkb = {
       variant = "altgr-intl";
       layout = "us";
     };
   };
-  services.displayManager.defaultSession = "gnome"; # forcing graphic target in systemd
 
   #Audio
   #Removing alsa and pulseaudio to use pipewire
