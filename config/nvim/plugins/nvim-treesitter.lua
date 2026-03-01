@@ -6,7 +6,7 @@ vim.fn.mkdir(parser_install_dir, "p")
 vim.opt.runtimepath:append(parser_install_dir)
 
 
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter'.setup {
 
   -- uses the custom parser directory
   parser_install_dir = parser_install_dir,
