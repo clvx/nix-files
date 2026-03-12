@@ -20,6 +20,10 @@
   # Set your time zone.
   time.timeZone = "America/Denver";
 
+  programs = {
+    steam.enable = true;
+  };
+
   #nix = {
   #  settings = {
   #    substituters = [
