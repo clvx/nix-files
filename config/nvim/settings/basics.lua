@@ -110,13 +110,46 @@ vim.cmd [[
     set noswapfile
 ]]
 
--- colorscheme and a enabling transparent backgroun
-vim.cmd [[
-  colorscheme gruvbox
-  highlight Normal     ctermbg=NONE guibg=NONE
-  highlight LineNr     ctermbg=NONE guibg=NONE
-  highlight SignColumn ctermbg=NONE guibg=NONE
-]]
+-- colorscheme based on wezterm get_appearance
+local function read_appearance()
+  local path = vim.fn.expand("~/.cache/wezterm-appearance")
+  local f = io.open(path, "r")
+  if not f then
+    return "dark"
+  end
+
+  local mode = f:read("*l")
+  f:close()
+
+  if mode == "light" then
+    return "light"
+  end
+  return "dark"
+end
+
+local function apply_theme()
+  local mode = read_appearance()
+
+  if mode == "light" then
+    vim.o.background = "light"
+    vim.cmd("colorscheme catppuccin")
+  else
+    vim.o.background = "dark"
+    vim.cmd("colorscheme gruvbox")
+  end
+
+  vim.cmd([[
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight LineNr guibg=NONE ctermbg=NONE
+    highlight SignColumn guibg=NONE ctermbg=NONE
+  ]])
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter", "FocusGained" }, {
+  callback = apply_theme,
+})
+
+apply_theme()
 
 -- resalta las busquedas en tiempo real
 opt.hlsearch = true

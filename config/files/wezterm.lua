@@ -4,28 +4,43 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- Appearance detection
 local function get_appearance()
   if wezterm.gui then
     return wezterm.gui.get_appearance()
   end
-  return 'Dark'
+  return "Dark"
 end
 
-local function scheme_for_appearance(appearance)
-  if appearance:find 'Dark' then
-    return 'Afterglow'
-  else
-    return 'Builtin Solarized Light'
+local function is_dark(appearance)
+  return appearance:find("Dark") ~= nil
+end
+
+local function write_appearance_file(mode)
+  local home = os.getenv("HOME")
+  if not home then
+    return
+  end
+
+  local path = home .. "/.cache/wezterm-appearance"
+  local f = io.open(path, "w")
+  if f then
+    f:write(mode)
+    f:close()
   end
 end
+
+local appearance = get_appearance()
+local mode = is_dark(appearance) and "dark" or "light"
+
+write_appearance_file(mode)
+
 
 -- This is where you actually apply your config choices
 
 config.xcursor_theme = "Adwaita"
 
 -- For example, changing the color scheme:
-config.color_scheme = scheme_for_appearance(get_appearance())
+config.color_scheme = mode == "dark" and "Afterglow" or "Builtin Solarized Light"
 
 
 -- Default working directory
