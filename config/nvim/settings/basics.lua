@@ -132,7 +132,7 @@ local function apply_theme()
 
   if mode == "light" then
     vim.o.background = "light"
-    vim.cmd("colorscheme catppuccin")
+    vim.cmd("colorscheme shine")
   else
     vim.o.background = "dark"
     vim.cmd("colorscheme gruvbox")

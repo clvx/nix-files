@@ -40,7 +40,7 @@ write_appearance_file(mode)
 config.xcursor_theme = "Adwaita"
 
 -- For example, changing the color scheme:
-config.color_scheme = mode == "dark" and "Afterglow" or "Builtin Solarized Light"
+config.color_scheme = mode == "dark" and "Afterglow" or "Unikitty Light (base16)"
 
 
 -- Default working directory
