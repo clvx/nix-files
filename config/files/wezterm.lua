@@ -4,12 +4,29 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- Appearance detection
+local function get_appearance()
+  if wezterm.gui then
+    return wezterm.gui.get_appearance()
+  end
+  return 'Dark'
+end
+
+local function scheme_for_appearance(appearance)
+  if appearance:find 'Dark' then
+    return 'Afterglow'
+  else
+    return 'Builtin Solarized Light'
+  end
+end
+
 -- This is where you actually apply your config choices
 
 config.xcursor_theme = "Adwaita"
 
 -- For example, changing the color scheme:
-config.color_scheme = 'Afterglow'
+config.color_scheme = scheme_for_appearance(get_appearance())
+
 
 -- Default working directory
 config.default_cwd = "/home/clvx"
