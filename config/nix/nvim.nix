@@ -5,7 +5,6 @@
     vimAlias = true;
     package = pkgs-unstable.neovim-unwrapped;
     extraConfig = ''
-      source  $HOME/nix-files/config/nvim/settings/basics.vim
       luafile $HOME/nix-files/config/nvim/settings/basics.lua
       luafile $HOME/nix-files/config/nvim/settings/whichkey.lua
       luafile $HOME/nix-files/config/nvim/settings/keymaps.lua

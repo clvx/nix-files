@@ -54,12 +54,12 @@ map('n','<leader>lws', ':FzfLua lsp_workspace_symbols<CR>')
 map('n','<leader>lt', ':FzfLua lsp_typedefs<CR>')
 
 -----------------------
--- buffer navigation --
+-- buffer resizing --
 -----------------------
-map('','<C-h>','<C-w>h')
-map('','<C-j>','<C-w>j')
-map('','<C-k>','<C-w>k')
-map('','<C-l>','<C-w>l')
+map('n','<C-h>',':vertical resize +2<CR>')
+map('n','<C-j>',':resize -2<CR>')
+map('n','<C-k>',':resize +2<CR>')
+map('n','<C-l>',':vertical resize -2<CR>')
 --- tab navigation ----
 map('','<c-t>','<esc>:tabnew<cr>')
 map('','<c-[>','gT')
