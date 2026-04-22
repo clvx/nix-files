@@ -13,7 +13,6 @@
       luafile $HOME/nix-files/config/nvim/plugins/nvim-treesitter.lua
       luafile $HOME/nix-files/config/nvim/plugins/lualine-nvim.lua
       luafile $HOME/nix-files/config/nvim/plugins/lspconfig.lua
-      luafile $HOME/nix-files/config/nvim/plugins/toggleterm.lua
       luafile $HOME/nix-files/config/nvim/plugins/gitsigns.lua
       luafile $HOME/nix-files/config/nvim/plugins/go-nvim.lua
       luafile $HOME/nix-files/config/nvim/plugins/git-blame.lua
@@ -37,7 +36,6 @@
 
         #eye candy
         lualine-nvim
-        toggleterm-nvim
         which-key-nvim
         noice-nvim
         nvim-notify
