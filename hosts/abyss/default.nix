@@ -44,6 +44,11 @@
       192.168.88.254 binarycache.bitclvx.com
       192.168.1.1 www.routerlogin.net
     '';
+    firewall = {
+      allowedTCPPorts = [
+        #5201 #iperf
+      ];
+    };
   };
 
   # Configure console keymap
