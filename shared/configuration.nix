@@ -77,10 +77,9 @@ in {
       firefox
       thunderbird
       spotify
-      zoom-us
       todoist-electron
       telegram-desktop
-      bitwarden-desktop
+      #bitwarden-desktop
       slack
       nextcloud-client
       wl-clipboard
@@ -235,7 +234,7 @@ in {
 
     docker = {
       enable = true;
-      package = pkgs.docker_28;
+      package = pkgs.docker_29;
     };
 
     incus = {

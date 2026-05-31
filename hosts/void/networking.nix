@@ -22,6 +22,7 @@
         # 443 #nginx
         53317 #localsend
         8443 #incus server
+        5201 #iperf
       ];
     };
     nameservers = [ 

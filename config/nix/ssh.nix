@@ -2,25 +2,26 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+
+    settings = {
       "*" = {
-        controlPersist = "4h";
-        controlPath = "/home/clvx/.ssh/mux-%r@%h:%p";
-        controlMaster = "auto";
-        serverAliveInterval = 30;
-        serverAliveCountMax = 120;
-        forwardAgent = true;
+        ForwardAgent = true;
+        ServerAliveInterval = 30;
+        ServerAliveCountMax = 120;
+        ControlMaster = "auto";
+        ControlPath = "/home/clvx/.ssh/mux-%r@%h:%p";
+        ControlPersist = "4h";
       };
+
       "github.com" = {
-        identityFile = "~/.ssh/id_vcs_rsa";
-        identitiesOnly = true;
+        IdentityFile = "~/.ssh/id_vcs_rsa";
+        IdentitiesOnly = true;
       };
+
       "gitlab.com" = {
-        identityFile = "~/.ssh/id_vcs_rsa";
-        identitiesOnly = true;
+        IdentityFile = "~/.ssh/id_vcs_rsa";
+        IdentitiesOnly = true;
       };
-
     };
-
   };
 }
