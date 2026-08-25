@@ -79,7 +79,7 @@ in {
       spotify
       todoist-electron
       telegram-desktop
-      #bitwarden-desktop
+      bitwarden-desktop
       slack
       nextcloud-client
       wl-clipboard
